@@ -14,13 +14,13 @@ namespace ProducerConsumer
         {
             var processingQueue = new ProcessingQueue();
 
-            Task.Factory.StartNew(() => processingQueue.Consume());
+            Task.Factory.StartNew(processingQueue.Consume);
 
             while (true)
             {
                 var input = Console.ReadLine();
-                processingQueue.Produce(input);              
-            }
+                processingQueue.Produce(input);
+            }          
         }
     }
 }

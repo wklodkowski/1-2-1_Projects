@@ -9,35 +9,43 @@ namespace ProducerConsumer.BL
 {
     public class ProcessingQueue
     {
+        private readonly EventWaitHandle _waitHandler;
         private readonly Queue<string> _queue;
-        private static readonly Object _lockObject = new object();
+        private static readonly object LockObject = new object();
 
         public ProcessingQueue()
         {
             _queue = new Queue<string>();
+            _waitHandler = new AutoResetEvent(false);
         }
 
         public void Produce(string message)
         {
-            lock (_lockObject)
+            lock (LockObject)
             {
                 _queue.Enqueue(message);
-            }          
+            }
+            _waitHandler.Set();
         }
 
         public void Consume()
         {
-            lock (_lockObject)
+            while (true)
             {
-                while (true)
+                string message = null;
+                lock (LockObject)
                 {
-                    if (!_queue.Any())
-                        continue;
-
-                    var messageFromQueue = _queue.Dequeue();
-                    Thread.Sleep(10000);//10 seconds              
-                    Console.WriteLine($"Message {messageFromQueue} has been processed.");
+                    if (_queue.Any())
+                        message = _queue.Dequeue();
                 }
+
+                if (message != null)
+                {
+                    Console.WriteLine($"\nPrzetwarzanie wiadomości: {message}");
+                    Thread.Sleep(3000);
+                }
+                else
+                    _waitHandler.WaitOne();
             }
         }
     }
