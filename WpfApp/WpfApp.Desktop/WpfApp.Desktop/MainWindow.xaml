@@ -4,9 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp.Desktop"
+        xmlns:command="http://www.galasoft.ch/mvvmlight"
+        xmlns:viewModels="clr-namespace:WpfApp.Desktop.ViewModels"
+        xmlns:viewModels1="clr-namespace:WpfApp.Desktop.Report.ViewModels"
+        xmlns:views="clr-namespace:WpfApp.Desktop.Report.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" 
+        DataContext="{Binding MainViewModel,Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <DataTemplate DataType = "{x:Type viewModels1:ReportViewModel}">
+            <views:ReportView/>
+        </DataTemplate>
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "Auto" />
+            <RowDefinition Height = "*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name = "NavBar">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Content = "Report" 
+                    Command = "{Binding GoToReportCommand}" 
+                    Grid.Column = "0" />
+        </Grid>
+        <ContentPresenter Grid.Row="0" Content="{Binding CurrentPageViewModel}" />
+        <!--<Grid x:Name = "MainContent" Grid.Row = "1">
+            <ContentControl Content = "{Binding CurrentViewModel}" />
+        </Grid>-->
+
     </Grid>
 </Window>
