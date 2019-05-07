@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using WpfApp.Desktop.Infrastructure.Consts;
 using WpfApp.Desktop.Infrastructure.PlatformServices.Interfaces;
+using WpfApp.Desktop.Report.ViewModels;
 
 namespace WpfApp.Desktop.ViewModels
 {
@@ -18,29 +19,13 @@ namespace WpfApp.Desktop.ViewModels
         public MainViewModel(INavigateExtendService navigateExtendService)
         {
             _navigateExtendService = navigateExtendService;
-            GoToReportCommand = new RelayCommand(GoToReportMethod);
         }
 
-        public ICommand GoToReportCommand { get; private set; }
+        public ICommand _reportCommand { get; private set; }
 
-        private RelayCommand _reportCommand;
-
-        public RelayCommand ReportCommand
+        public ICommand ReportCommand
         {
-            get
-            {
-                return _reportCommand
-                       ?? (_reportCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigateExtendService.NavigateTo("ReportView");
-                           }));
-            }
-        }
-
-        private void GoToReportMethod()
-        {
-            _navigateExtendService.NavigateTo(NavigationViews.ReportView);
+            get { return _reportCommand ?? (_reportCommand = new RelayCommand((() => { _navigateExtendService.NavigateTo(NavigationViews.ReportView); }))); }
         }
     }
 }

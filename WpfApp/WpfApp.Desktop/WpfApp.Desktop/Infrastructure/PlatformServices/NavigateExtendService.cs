@@ -6,13 +6,14 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Ioc;
 using WpfApp.Desktop.Infrastructure.PlatformServices.Interfaces;
 
 namespace WpfApp.Desktop.Infrastructure.PlatformServices
 {
     public class NavigateExtendService : INavigateExtendService
     {
-        private readonly Dictionary<string, Uri> _pagesByKey;
+        private readonly Dictionary<string, Type> _pagesByKey;
         private readonly List<string> _historic;
         private string _currentPageKey;
 
@@ -35,7 +36,7 @@ namespace WpfApp.Desktop.Infrastructure.PlatformServices
 
         public NavigateExtendService()
         {
-            _pagesByKey = new Dictionary<string, Uri>();
+            _pagesByKey = new Dictionary<string, Type>();
             _historic = new List<string>();
         }
         public void GoBack()
@@ -60,17 +61,20 @@ namespace WpfApp.Desktop.Infrastructure.PlatformServices
                     throw new ArgumentException($"No such page: {pageKey} ", nameof(pageKey));
                 }
 
-                if (GetDescendantFromName(Application.Current.MainWindow, "MainFrame") is Frame frame)
+                var frame = GetDescendantFromName(Application.Current.MainWindow, "MainContent") as ContentControl;
+
+                if (frame != null)
                 {
-                    frame.Source = _pagesByKey[pageKey];
+                    frame.DataContext = _pagesByKey[pageKey];
                 }
+
                 Parameter = parameter;
                 _historic.Add(pageKey);
                 CurrentPageKey = pageKey;
             }
         }
 
-        public void Configure(string key, Uri pageType)
+        public void Configure(string key, Type pageType)
         {
             lock (_pagesByKey)
             {

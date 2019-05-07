@@ -14,10 +14,9 @@ namespace WpfApp.Desktop.ViewModels
     public class ViewModelLocator
     {
         public ViewModelLocator()
-        {
-            SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<ReportViewModel>();
+        {            
             SetupNavigation();
+            RegisterViewModels();
         }
 
         public MainViewModel MainViewModel
@@ -36,6 +35,12 @@ namespace WpfApp.Desktop.ViewModels
             
             navigation.AddReportNavigationViews();
             SimpleIoc.Default.Register<INavigateExtendService>(() => navigation);
+        }
+
+        private static void RegisterViewModels()
+        {
+            SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ReportViewModel>();
         }
     }   
 }

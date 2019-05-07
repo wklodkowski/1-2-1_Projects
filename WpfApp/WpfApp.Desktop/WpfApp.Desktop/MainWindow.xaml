@@ -12,33 +12,37 @@
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding MainViewModel,Source={StaticResource Locator}}">
 
+
     <Window.Resources>
-        <DataTemplate DataType = "{x:Type viewModels1:ReportViewModel}">
-            <views:ReportView/>
+        <DataTemplate DataType="{x:Type viewModels1:ReportViewModel}">
+            <views:ReportView />
         </DataTemplate>
     </Window.Resources>
-
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height = "Auto" />
-            <RowDefinition Height = "*" />
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name = "NavBar">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-                <ColumnDefinition Width = "*" />
-            </Grid.ColumnDefinitions>
-
-            <Button Content = "Report" 
-                    Command = "{Binding GoToReportCommand}" 
-                    Grid.Column = "0" />
-        </Grid>
-        <ContentPresenter Grid.Row="0" Content="{Binding CurrentPageViewModel}" />
-        <!--<Grid x:Name = "MainContent" Grid.Row = "1">
-            <ContentControl Content = "{Binding CurrentViewModel}" />
-        </Grid>-->
-
+        <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+            <StackPanel>
+                <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+                    <Button Content="Report"
+                            Command="{Binding ReportCommand}"
+                            Margin="2,5"/>
+                </Border>
+            </StackPanel>
+        </DockPanel>
+        <ContentControl x:Name="MainContent" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"/>
     </Grid>
 </Window>
