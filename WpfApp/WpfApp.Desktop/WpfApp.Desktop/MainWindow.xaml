@@ -38,11 +38,12 @@
             <StackPanel>
                 <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
                     <Button Content="Report"
-                            Command="{Binding ReportCommand}"
+                            Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                            CommandParameter="{Binding}"
                             Margin="2,5"/>
                 </Border>
             </StackPanel>
         </DockPanel>
-        <ContentControl x:Name="MainContent" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding}"/>
+        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel}"/>
     </Grid>
 </Window>

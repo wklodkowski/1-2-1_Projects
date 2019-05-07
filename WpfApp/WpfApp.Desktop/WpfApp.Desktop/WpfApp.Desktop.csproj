@@ -64,10 +64,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Infrastructure\Consts\NavigationViews.cs" />
-    <Compile Include="Infrastructure\PlatformServices\Interfaces\INavigateExtendService.cs" />
-    <Compile Include="Infrastructure\PlatformServices\NavigateExtendService.cs" />
-    <Compile Include="Report\Extensions\ReportExtension.cs" />
+    <Compile Include="Common\Pages\Interfaces\IPageViewModel.cs" />
+    <Compile Include="Report\Consts\ReportConsts.cs" />
     <Compile Include="Report\Models\Report.cs" />
     <Compile Include="Report\ViewModels\ReportViewModel.cs" />
     <Compile Include="Report\Views\ReportView.xaml.cs">

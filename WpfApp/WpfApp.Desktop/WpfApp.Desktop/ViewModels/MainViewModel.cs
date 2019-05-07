@@ -6,26 +6,47 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using WpfApp.Desktop.Infrastructure.Consts;
-using WpfApp.Desktop.Infrastructure.PlatformServices.Interfaces;
+using WpfApp.Desktop.Common.Pages.Interfaces;
 using WpfApp.Desktop.Report.ViewModels;
 
 namespace WpfApp.Desktop.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        private readonly INavigateExtendService _navigateExtendService;
+        private ICommand _changePageCommand;
+        private IPageViewModel _currentPageViewModel;
+        private List<IPageViewModel> _pageViewModels;
 
-        public MainViewModel(INavigateExtendService navigateExtendService)
+        public MainViewModel()
         {
-            _navigateExtendService = navigateExtendService;
+            PageViewModels.Add(new ReportViewModel());
+            CurrentPageViewModel = PageViewModels[0];
         }
 
-        public ICommand _reportCommand { get; private set; }
+        public List<IPageViewModel> PageViewModels => _pageViewModels ?? (_pageViewModels = new List<IPageViewModel>());
 
-        public ICommand ReportCommand
+        public IPageViewModel CurrentPageViewModel
         {
-            get { return _reportCommand ?? (_reportCommand = new RelayCommand((() => { _navigateExtendService.NavigateTo(NavigationViews.ReportView); }))); }
+            get => _currentPageViewModel;
+            set
+            {
+                if (_currentPageViewModel == value)
+                    return;
+
+                _currentPageViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ICommand ChangePageCommand => _changePageCommand ?? (_changePageCommand = new RelayCommand<IPageViewModel>(ChangeViewModel));
+
+        private void ChangeViewModel(IPageViewModel viewModel)
+        {
+            if (!PageViewModels.Contains(viewModel))
+                PageViewModels.Add(viewModel);
+
+            CurrentPageViewModel = PageViewModels
+                .FirstOrDefault(vm => vm == viewModel);
         }
     }
 }
