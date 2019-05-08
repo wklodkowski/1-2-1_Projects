@@ -65,6 +65,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Pages\Interfaces\IPageViewModel.cs" />
+    <Compile Include="Home\Consts\HomeConsts.cs" />
+    <Compile Include="Home\ViewModels\HomeViewModel.cs" />
     <Compile Include="Report\Consts\ReportConsts.cs" />
     <Compile Include="Report\Models\Report.cs" />
     <Compile Include="Report\ViewModels\ReportViewModel.cs" />
@@ -130,6 +132,9 @@
       <Name>WpfApp.BLL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Home\Models\" />
+    <Folder Include="Home\Views\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
