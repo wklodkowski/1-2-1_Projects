@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp.Desktop.Common.Pages.Interfaces
+namespace WpfApp.Desktop.ViewModels.Home
 {
-    public interface IPageViewModel
+    class HomeViewModel
     {
-        string Name { get; }
     }
 }
