@@ -7,7 +7,6 @@
         xmlns:command="http://www.galasoft.ch/mvvmlight"
         xmlns:viewModels="clr-namespace:WpfApp.Desktop.ViewModels"
         xmlns:viewModels1="clr-namespace:WpfApp.Desktop.Report.ViewModels"
-        xmlns:views="clr-namespace:WpfApp.Desktop.Report.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding MainViewModel,Source={StaticResource Locator}}">
@@ -15,7 +14,7 @@
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels1:ReportViewModel}">
-            <views:ReportView />
+
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -33,6 +32,35 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+
+
+        <Menu HorizontalAlignment = "Left" VerticalAlignment = "Top" Width = "517">
+
+            <MenuItem Header = "File">
+                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
+
+                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
+
+                <Separator HorizontalAlignment = "Left" Width = "140" />
+
+                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140"/>
+            </MenuItem>
+
+            <MenuItem Header = "Edit">
+                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
+                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
+                <Separator HorizontalAlignment = "Left" Width = "140" />
+                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />
+            </MenuItem>
+
+            <MenuItem Header = "View">
+                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
+                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
+                <Separator HorizontalAlignment = "Left" Width = "140" />
+                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />
+            </MenuItem>
+        </Menu>
+
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <StackPanel>
