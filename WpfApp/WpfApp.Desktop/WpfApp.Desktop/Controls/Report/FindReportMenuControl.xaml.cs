@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp.Desktop.Controls.Menu
+namespace WpfApp.Desktop.Controls.Report
 {
     /// <summary>
-    /// Interaction logic for MenuControl.xaml
+    /// Interaction logic for FindReportControl.xaml
     /// </summary>
-    public partial class MenuControl : UserControl
+    public partial class FindReportControl : UserControl
     {
-        public MenuControl()
+        public FindReportControl()
         {
             InitializeComponent();
         }

@@ -4,11 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfApp.Desktop.Views.Report"
-             xmlns:menu="clr-namespace:WpfApp.Desktop.Controls.Menu"
+             xmlns:menu="clr-namespace:WpfApp.Desktop.Controls"
+             xmlns:report="clr-namespace:WpfApp.Desktop.Controls.Report"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding ReportViewModel, Source={StaticResource Locator}}">
+
     <Grid>
-        <menu:MenuControl DataContext="{Binding ReportMenu}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+            <StackPanel>
+                <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
+                    <!--<Button Content="Report"
+                            Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                            CommandParameter="{Binding}"
+                            Margin="2,5"/>-->
+                    <report:FindReportControl />
+                </Border>
+            </StackPanel>
+        </DockPanel>
     </Grid>
+
+
 </UserControl>

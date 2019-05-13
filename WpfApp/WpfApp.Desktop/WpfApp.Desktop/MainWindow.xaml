@@ -6,16 +6,12 @@
         xmlns:local="clr-namespace:WpfApp.Desktop"
         xmlns:command="http://www.galasoft.ch/mvvmlight"
         xmlns:viewModels="clr-namespace:WpfApp.Desktop.ViewModels"
-        xmlns:viewModels1="clr-namespace:WpfApp.Desktop.Report.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding MainViewModel,Source={StaticResource Locator}}">
 
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModels1:ReportViewModel}">
-
-        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

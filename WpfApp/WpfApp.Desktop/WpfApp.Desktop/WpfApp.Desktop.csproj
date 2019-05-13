@@ -64,20 +64,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\Report\Menu\ReportMenuControl.xaml.cs">
-      <DependentUpon>ReportMenuControl.xaml</DependentUpon>
+    <Compile Include="Controls\Report\FindReportMenuControl.xaml.cs">
+      <DependentUpon>FindReportMenuControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Controls\Menu\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\Controls\Menu\MenuViewModel.cs" />
+    <Compile Include="Controls\Report\FindReportInputControl.xaml.cs">
+      <DependentUpon>FindReportInputControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Controls\Input\InputViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\Report\ReportMenuViewModel.cs" />
+    <Compile Include="ViewModels\Report\FindReportInputViewModel.cs" />
+    <Compile Include="ViewModels\Report\FindReportMenuViewModel.cs" />
     <Compile Include="ViewModels\Report\ReportViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Report\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\Report\Menu\ReportMenuControl.xaml">
+    <Page Include="Controls\Report\FindReportMenuControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Report\FindReportInputControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
