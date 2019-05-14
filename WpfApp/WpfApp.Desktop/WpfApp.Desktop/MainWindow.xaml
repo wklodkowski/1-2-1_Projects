@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
 
 
-        <Menu HorizontalAlignment = "Left" VerticalAlignment = "Top" Width = "517">
+        <!--<Menu HorizontalAlignment = "Left" VerticalAlignment = "Top" Width = "517">
 
             <MenuItem Header = "File">
                 <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
@@ -55,7 +55,7 @@
                 <Separator HorizontalAlignment = "Left" Width = "140" />
                 <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />
             </MenuItem>
-        </Menu>
+        </Menu>-->
 
 
         <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">

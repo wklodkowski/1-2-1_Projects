@@ -16,25 +16,13 @@ namespace WpfApp.Desktop.ViewModels
             RegisterControls();
         }
 
-        public MainViewModel MainViewModel
-        {
-            get { return SimpleIoc.Default.GetInstance<MainViewModel>(); }
-        }
+        public MainViewModel MainViewModel => SimpleIoc.Default.GetInstance<MainViewModel>();
 
-        public ReportViewModel ReportViewModel
-        {
-            get { return SimpleIoc.Default.GetInstance<ReportViewModel>(); }
-        }
+        public ReportViewModel ReportViewModel => SimpleIoc.Default.GetInstance<ReportViewModel>();
 
-        public FindReportMenuViewModel FindReportMenuViewModel
-        {
-            get { return SimpleIoc.Default.GetInstance<FindReportMenuViewModel>(); }
-        }
+        public FindReportMenuViewModel FindReportMenuViewModel => SimpleIoc.Default.GetInstance<FindReportMenuViewModel>();
 
-        public FindReportInputViewModel FindReportInputViewModel
-        {
-            get { return SimpleIoc.Default.GetInstance<FindReportInputViewModel>(); }
-        }
+        public FindReportInputViewModel FindReportInputViewModel => SimpleIoc.Default.GetInstance<FindReportInputViewModel>();
 
         private static void RegisterViewModels()
         {
