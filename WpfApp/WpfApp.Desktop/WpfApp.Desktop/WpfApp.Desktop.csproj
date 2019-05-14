@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Pages\Enum\ApplicationPage.cs" />
+    <Compile Include="Common\Pages\Models\SwitchViewMessageModel.cs" />
     <Compile Include="Controls\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
     </Compile>

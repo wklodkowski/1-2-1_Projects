@@ -53,7 +53,7 @@
                 <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
                 <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
                 <Separator HorizontalAlignment = "Left" Width = "140" />
-                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />
+                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />7y4
             </MenuItem>
         </Menu>-->
 
@@ -68,6 +68,8 @@
                 </Border>
             </StackPanel>
         </DockPanel>
-        <ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel}"/>
+        <!--<ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel}"/>-->
+        <ContentControl  Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding ContentControlView}"></ContentControl>
+        
     </Grid>
 </Window>
