@@ -38,23 +38,23 @@ namespace WpfApp.Desktop.Controls
                 typeof(ViewModelBase), typeof(PageHost),
                 new UIPropertyMetadata());
 
-        private static object CurrentPagePropertyChanged(DependencyObject dependencyObject, object value)
-        {
-            var currentPage = (ApplicationPage)value;
-            var currentPageViewModel = dependencyObject.GetValue(CurrentPageViewModelProperty);
+        //private static object CurrentPagePropertyChanged(DependencyObject dependencyObject, object value)
+        //{
+        //    var currentPage = (ApplicationPage)value;
+        //    var currentPageViewModel = dependencyObject.GetValue(CurrentPageViewModelProperty);
 
-            var newPageFrame = (dependencyObject as PageHost).NewPage;
-            var oldPageFrame = (dependencyObject as PageHost).OldPage;
+        //    var newPageFrame = (dependencyObject as PageHost).NewPage;
+        //    var oldPageFrame = (dependencyObject as PageHost).OldPage;
 
-            if (newPageFrame.Content is UserControl page &&
-                page.ToApplicationPage() == currentPage)
-            {
-                // Just update the view model
-                page.ViewModelObject = currentPageViewModel;
+        //    if (newPageFrame.Content is UserControl page &&
+        //        page.ToApplicationPage() == currentPage)
+        //    {
+        //        // Just update the view model
+        //        page.ViewModelObject = currentPageViewModel;
 
-                return value;
-            }
+        //        return value;
+        //    }
 
-        }
+        //}
     }
 }

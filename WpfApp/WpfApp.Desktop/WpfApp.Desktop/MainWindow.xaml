@@ -10,66 +10,32 @@
         Title="MainWindow" Height="450" Width="800" 
         DataContext="{Binding MainViewModel,Source={StaticResource Locator}}">
 
-
     <Window.Resources>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-
-        <!--<Menu HorizontalAlignment = "Left" VerticalAlignment = "Top" Width = "517">
-
-            <MenuItem Header = "File">
-                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
-
-                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
-
-                <Separator HorizontalAlignment = "Left" Width = "140" />
-
-                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140"/>
-            </MenuItem>
-
-            <MenuItem Header = "Edit">
-                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
-                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
-                <Separator HorizontalAlignment = "Left" Width = "140" />
-                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />
-            </MenuItem>
-
-            <MenuItem Header = "View">
-                <MenuItem Header = "Item 1" HorizontalAlignment = "Left" Width = "140" />
-                <MenuItem Header = "Item 2" HorizontalAlignment = "Left" Width = "140" />
-                <Separator HorizontalAlignment = "Left" Width = "140" />
-                <MenuItem Header = "Item 3" HorizontalAlignment = "Left" Width = "140" />7y4
-            </MenuItem>
-        </Menu>-->
-
-
-        <DockPanel Background="Gray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
-            <StackPanel>
-                <Border DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="0,0,1,0">
-                    <Button Content="Report"
-                            Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
-                            CommandParameter="{Binding}"
-                            Margin="2,5"/>
-                </Border>
-            </StackPanel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_Open"/>
+                    <MenuItem Header="_Close"/>
+                    <MenuItem Header="_Save"/>
+                </MenuItem>
+                <MenuItem Header="_Report">
+                    <MenuItem Header="Create Report"/>
+                    <MenuItem Header="Find Reports" Command="{Binding FindReportCommand}"/>
+                    <MenuItem Header="Update Reports"/>
+                    <MenuItem Header="Delete Report"/>
+                </MenuItem>
+            </Menu>
         </DockPanel>
-        <!--<ContentControl Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Grid.RowSpan="5" Content="{Binding CurrentPageViewModel}"/>-->
-        <ContentControl  Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Content="{Binding ContentControlView}"></ContentControl>
-        
+        <ContentControl Grid.Row="1" Content="{Binding ContentControlView}"></ContentControl>
     </Grid>
 </Window>

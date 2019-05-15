@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp.Desktop.Controls.Report
+namespace WpfApp.Desktop.Views.Home
 {
     /// <summary>
-    /// Interaction logic for FindReportInputReport.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class FindReportInputControl : UserControl
+    public partial class HomeView : UserControl
     {
-        public FindReportInputControl()
+        public HomeView()
         {
             InitializeComponent();
         }

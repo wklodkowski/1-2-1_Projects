@@ -9,6 +9,6 @@ namespace WpfApp.Desktop.Common.Pages.Enum
     public enum ApplicationPage
     {
         Home = 0,
-        Report = 1
+        FindReport = 1
     }
 }
