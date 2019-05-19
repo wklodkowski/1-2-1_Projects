@@ -16,13 +16,14 @@ namespace WpfApp.Desktop.ViewModels
         }
 
         public MainViewModel MainViewModel => SimpleIoc.Default.GetInstance<MainViewModel>();
-
         public FindReportViewModel ReportViewModel => SimpleIoc.Default.GetInstance<FindReportViewModel>();
+        public FindReportContentViewModel FindReportContentViewModel => SimpleIoc.Default.GetInstance<FindReportContentViewModel>();
 
         private static void RegisterViewModels()
         {
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<FindReportViewModel>();
+            SimpleIoc.Default.Register<FindReportContentViewModel>();
         }
     }   
 }

@@ -15,7 +15,7 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <DockPanel Background="LightGray" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <StackPanel>
                 <GroupBox>
@@ -24,18 +24,16 @@
                     </GroupBox.Header>
                     <StackPanel>
                         <Label Content="Client ID:"/>
-                        <TextBox Text=""/>
+                        <TextBox Text="{Binding ClientId}"/>
                         <Label Content="First Name:"/>
-                        <TextBox Text=""/>
+                        <TextBox Text="{Binding FirstName}"/>
                         <Label Content="Last Name:"/>
-                        <TextBox Text=""/>
-                        <Button Content="Submit" />
+                        <TextBox Text="{Binding LastName}"/>
+                        <Button Content="Submit" Command="{Binding FindReportContentCommand}" />
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
         </DockPanel>
-        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding ContentControlFindReportView}"></ContentControl>
+        <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding ContentControlFindReportContentView}"></ContentControl>
     </Grid>
-
-
 </UserControl>

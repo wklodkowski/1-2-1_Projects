@@ -64,22 +64,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\Pages\Enum\ApplicationPage.cs" />
-    <Compile Include="Common\Pages\Models\SwitchViewMessageModel.cs" />
-    <Compile Include="Controls\PageHost.xaml.cs">
-      <DependentUpon>PageHost.xaml</DependentUpon>
+    <Compile Include="Common\Pages\Main\Enum\ApplicationPage.cs" />
+    <Compile Include="Common\Pages\Report\Enums\FindReportPage.cs" />
+    <Compile Include="Common\Pages\Report\Models\SwitchReportViewMessageModel.cs" />
+    <Compile Include="Common\Pages\Main\Models\SwitchViewMessageModel.cs" />
+    <Compile Include="Controls\Reports\FindReportContentControl.xaml.cs">
+      <DependentUpon>FindReportContentControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Reports\CustomerModel.cs" />
+    <Compile Include="Models\Reports\Messages\FindReportContentMessage.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Report\FindReportContentViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Report\FindReportContentView.xaml.cs">
+      <DependentUpon>FindReportContentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Report\FindReportView.xaml.cs">
       <DependentUpon>FindReportView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\PageHost.xaml">
+    <Page Include="Controls\Reports\FindReportContentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,6 +104,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Home\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report\FindReportContentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,8 +8,8 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using WpfApp.Desktop.Common.Pages.Enum;
-using WpfApp.Desktop.Common.Pages.Models;
+using WpfApp.Desktop.Common.Pages.Main.Enum;
+using WpfApp.Desktop.Common.Pages.Main.Models;
 using WpfApp.Desktop.Views.Report;
 
 namespace WpfApp.Desktop.ViewModels
