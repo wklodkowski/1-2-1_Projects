@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WpfApp.Desktop.Models.Reports
 {
-    public class CustomerModel
+    public class ReportModel
     {
-        public int ClientId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public int ReportId { get; set; }
+        public string Title { get; set; }
+        public string CreationDate { get; set; }
     }
 }

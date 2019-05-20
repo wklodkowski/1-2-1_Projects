@@ -21,15 +21,7 @@ namespace WpfApp.BLL.Reports.Services
         public List<ReportModel> GetAllReportsForClient(int clientId)
         {
             var clientReports = _wpfAppContext.Reports.Where(x => x.CustomerId == clientId).ToList();
-            var result = new List<ReportModel>();
-
-            foreach (var report in clientReports)
-            {
-                var reportModel = _reportMapper.ToReportModel(report);
-                result.Add(reportModel);
-            }
-
-            return result;
+            return clientReports.Select(report => _reportMapper.ToReportModel(report)).ToList();
         }
     }
 }

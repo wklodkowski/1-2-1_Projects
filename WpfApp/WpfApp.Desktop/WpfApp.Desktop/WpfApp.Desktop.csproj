@@ -35,6 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Extras.CommonServiceLocator, Version=5.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Extras.CommonServiceLocator.5.0.0\lib\net45\Autofac.Extras.CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=0ffbc31322e9d308, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -68,8 +77,10 @@
     <Compile Include="Common\Pages\Report\Enums\FindReportPage.cs" />
     <Compile Include="Common\Pages\Report\Models\SwitchReportViewMessageModel.cs" />
     <Compile Include="Common\Pages\Main\Models\SwitchViewMessageModel.cs" />
-    <Compile Include="Models\Reports\CustomerModel.cs" />
+    <Compile Include="Mappers\Report\Interfaces\IReportMapper.cs" />
+    <Compile Include="Mappers\Report\ReportMapper.cs" />
     <Compile Include="Models\Reports\Messages\FindReportContentMessage.cs" />
+    <Compile Include="Models\Reports\ReportModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportContentViewModel.cs" />
@@ -144,6 +155,10 @@
     <ProjectReference Include="..\WpfApp.BLL\WpfApp.BLL.csproj">
       <Project>{6d0b1a46-bc6e-497c-a961-2277974713b4}</Project>
       <Name>WpfApp.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WpfApp.Infrastructure\WpfApp.Infrastructure.csproj">
+      <Project>{17e5c994-6903-4f06-ac78-dc98d1412d41}</Project>
+      <Name>WpfApp.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
