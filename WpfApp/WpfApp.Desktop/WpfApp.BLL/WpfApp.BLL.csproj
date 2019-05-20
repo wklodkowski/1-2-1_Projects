@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C519D0C8-FB3F-47B4-946E-6579710D96DE}</ProjectGuid>
+    <ProjectGuid>{6D0B1A46-BC6E-497C-A961-2277974713B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WpfApp.BLL</RootNamespace>
@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,14 +48,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\Mappers\Interfaces\IReportMapper.cs" />
+    <Compile Include="Reports\Mappers\ReportMapper.cs" />
+    <Compile Include="Reports\Models\ReportModel.cs" />
+    <Compile Include="Reports\Services\Interfaces\IReportService.cs" />
+    <Compile Include="Reports\Services\ReportService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Customers\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WpfApp.DAL\WpfApp.DAL.csproj">
-      <Project>{6d0b1a46-bc6e-497c-a961-2277974713b4}</Project>
+      <Project>{c519d0c8-fb3f-47b4-946e-6579710d96de}</Project>
       <Name>WpfApp.DAL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

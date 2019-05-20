@@ -68,9 +68,6 @@
     <Compile Include="Common\Pages\Report\Enums\FindReportPage.cs" />
     <Compile Include="Common\Pages\Report\Models\SwitchReportViewMessageModel.cs" />
     <Compile Include="Common\Pages\Main\Models\SwitchViewMessageModel.cs" />
-    <Compile Include="Controls\Reports\FindReportContentControl.xaml.cs">
-      <DependentUpon>FindReportContentControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Models\Reports\CustomerModel.cs" />
     <Compile Include="Models\Reports\Messages\FindReportContentMessage.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
@@ -87,10 +84,6 @@
     <Compile Include="Views\Report\FindReportView.xaml.cs">
       <DependentUpon>FindReportView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\Reports\FindReportContentControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -144,13 +137,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WpfApp.BLL\WpfApp.BLL.csproj">
-      <Project>{c519d0c8-fb3f-47b4-946e-6579710d96de}</Project>
-      <Name>WpfApp.BLL</Name>
-    </ProjectReference>
+    <Folder Include="Controls\" />
+    <Folder Include="Converters\Pages\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\Pages\" />
+    <ProjectReference Include="..\WpfApp.BLL\WpfApp.BLL.csproj">
+      <Project>{6d0b1a46-bc6e-497c-a961-2277974713b4}</Project>
+      <Name>WpfApp.BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

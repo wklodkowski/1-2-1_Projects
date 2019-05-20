@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp.Desktop", "WpfApp.Desktop\WpfApp.Desktop.csproj", "{F1ECFE29-F23E-4A5B-8510-89DE8028BD2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp.BLL", "WpfApp.BLL\WpfApp.BLL.csproj", "{C519D0C8-FB3F-47B4-946E-6579710D96DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp.DAL", "WpfApp.DAL\WpfApp.DAL.csproj", "{C519D0C8-FB3F-47B4-946E-6579710D96DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp.DAL", "WpfApp.DAL\WpfApp.DAL.csproj", "{6D0B1A46-BC6E-497C-A961-2277974713B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp.BLL", "WpfApp.BLL\WpfApp.BLL.csproj", "{6D0B1A46-BC6E-497C-A961-2277974713B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

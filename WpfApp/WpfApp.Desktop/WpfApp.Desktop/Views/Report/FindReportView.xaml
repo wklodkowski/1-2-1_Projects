@@ -29,7 +29,7 @@
                         <TextBox Text="{Binding FirstName}"/>
                         <Label Content="Last Name:"/>
                         <TextBox Text="{Binding LastName}"/>
-                        <Button Content="Submit" Command="{Binding FindReportContentCommand}" />
+                        <Button Content="Submit" Command="{Binding FindReportContentCommand}" Margin="0,10,0,10"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

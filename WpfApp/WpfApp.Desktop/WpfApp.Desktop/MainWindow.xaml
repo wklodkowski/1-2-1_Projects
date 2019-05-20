@@ -25,14 +25,20 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
                     <MenuItem Header="_Open"/>
-                    <MenuItem Header="_Close"/>
                     <MenuItem Header="_Save"/>
+                    <MenuItem Header="_Close"/>
                 </MenuItem>
                 <MenuItem Header="_Report">
                     <MenuItem Header="Create Report"/>
                     <MenuItem Header="Find Reports" Command="{Binding FindReportCommand}"/>
-                    <MenuItem Header="Update Reports"/>
+                    <MenuItem Header="Update Report"/>
                     <MenuItem Header="Delete Report"/>
+                </MenuItem>
+                <MenuItem Header="_Customer">
+                    <MenuItem Header="Create Customer"/>
+                    <MenuItem Header="Find Customers"/>
+                    <MenuItem Header="Update Customer"/>
+                    <MenuItem Header="Delete Customer"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

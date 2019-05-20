@@ -14,10 +14,6 @@ namespace WpfApp.Desktop.ViewModels.Report
 {
     public class FindReportViewModel : ViewModelBase
     {
-        private int _clientId;
-        private string _firstName;
-        private string _lastName;
-
         private FrameworkElement _contentControlFindReportContentView;
 
         public int ClientId { get; set; }
@@ -48,9 +44,8 @@ namespace WpfApp.Desktop.ViewModels.Report
                 FirstName = FirstName,
                 LastName = LastName
             };
-
-            Messenger.Default.Send(findReportContentModel);
             SwitchReportView(FindReportPage.FindReportContent);
+            Messenger.Default.Send(findReportContentModel);            
         }
 
         public FrameworkElement ContentControlFindReportContentView
