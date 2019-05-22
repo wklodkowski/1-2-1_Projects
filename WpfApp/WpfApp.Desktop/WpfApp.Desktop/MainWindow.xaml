@@ -28,17 +28,17 @@
                     <MenuItem Header="_Save"/>
                     <MenuItem Header="_Close"/>
                 </MenuItem>
+                <MenuItem Header="_Customer">
+                    <MenuItem Header="Create Customer" Command="{Binding CreateCustomerCommand}"/>
+                    <MenuItem Header="Find Customers" Command="{Binding FindCustomerCommand}"/>
+                    <MenuItem Header="Update Customer"/>
+                    <MenuItem Header="Delete Customer"/>
+                </MenuItem>
                 <MenuItem Header="_Report">
                     <MenuItem Header="Create Report"/>
                     <MenuItem Header="Find Reports" Command="{Binding FindReportCommand}"/>
                     <MenuItem Header="Update Report"/>
                     <MenuItem Header="Delete Report"/>
-                </MenuItem>
-                <MenuItem Header="_Customer">
-                    <MenuItem Header="Create Customer"/>
-                    <MenuItem Header="Find Customers"/>
-                    <MenuItem Header="Update Customer"/>
-                    <MenuItem Header="Delete Customer"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

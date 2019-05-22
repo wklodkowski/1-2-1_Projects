@@ -6,8 +6,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using WpfApp.Desktop.Common.Pages.Report.Enums;
 using WpfApp.Desktop.Common.Pages.Report.Models;
-using WpfApp.Desktop.Models.Reports;
-using WpfApp.Desktop.Models.Reports.Messages;
+using WpfApp.Desktop.Models.Report.Messages;
 using WpfApp.Desktop.Views.Report;
 
 namespace WpfApp.Desktop.ViewModels.Report
@@ -38,7 +37,7 @@ namespace WpfApp.Desktop.ViewModels.Report
 
         public void FindReportContent()
         {
-            var findReportContentModel = new FindReportContentModel
+            var findReportContentModel = new FindReportContentMessage
             {
                 ClientId = ClientId,
                 FirstName = FirstName,

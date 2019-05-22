@@ -7,7 +7,7 @@ using WpfApp.Desktop.Mappers.Report.Interfaces;
 
 namespace WpfApp.Desktop.Mappers.Report
 {
-    public class ReportMapper : IReportMapper
+    public class ReportDesktopMapper : IReportDesktopMapper
     {
     }
 }

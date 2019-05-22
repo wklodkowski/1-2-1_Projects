@@ -1,16 +1,17 @@
-﻿using System.Collections.Generic;
-using WpfApp.DAL.Reports.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace WpfApp.DAL.Customers.Models
+namespace WpfApp.Desktop.Models.Customer
 {
-    public class Customer
+    public class CustomerContentModel
     {
         public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Address { get; set; }
         public string Telephone { get; set; }
-
-        public ICollection<Report> Reports { get; set; }
     }
 }

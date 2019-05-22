@@ -2,7 +2,14 @@
 {
     public enum ApplicationPage
     {
-        Home = 0,
-        FindReport = 1
+        Home,
+        CreateCustomer,
+        FindCustomers,
+        UpdateCustomer,
+        DeleteCustomer,
+        CreateReport,
+        FindReports,
+        UpdateReport,
+        DeleteReport
     }
 }

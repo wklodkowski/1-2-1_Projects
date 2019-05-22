@@ -1,6 +1,6 @@
-﻿namespace WpfApp.Desktop.Models.Reports.Messages
+﻿namespace WpfApp.Desktop.Models.Report.Messages
 {
-    public class FindReportContentModel
+    public class FindReportContentMessage
     {
         public int ClientId { get; set; }
         public string FirstName { get; set; }

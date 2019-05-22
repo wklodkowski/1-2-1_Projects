@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using WpfApp.Desktop.Common.Pages.Main.Enum;
 using WpfApp.Desktop.Common.Pages.Main.Models;
+using WpfApp.Desktop.Views.Customer;
 using WpfApp.Desktop.Views.Report;
 
 namespace WpfApp.Desktop.ViewModels
@@ -19,12 +20,15 @@ namespace WpfApp.Desktop.ViewModels
         private FrameworkElement _contentControlView;
 
         public ICommand FindReportCommand { get; set; }
+        public ICommand CreateCustomerCommand { get; set; }
+        public ICommand FindCustomerCommand { get; set; }
 
         public MainViewModel()
         {
             RegisterSwitchMessage();
             FindReportCommand = new RelayCommand(FindReport);
-
+            CreateCustomerCommand = new RelayCommand(CreateCustomer);
+            FindCustomerCommand = new RelayCommand(FindCustomer);
         }
 
         public void RegisterSwitchMessage()
@@ -47,7 +51,17 @@ namespace WpfApp.Desktop.ViewModels
 
         public void FindReport()
         {
-            SwitchView(ApplicationPage.FindReport);
+            SwitchView(ApplicationPage.FindReports);
+        }
+
+        public void CreateCustomer()
+        {
+            SwitchView(ApplicationPage.CreateCustomer);
+        }
+
+        public void FindCustomer()
+        {
+            SwitchView(ApplicationPage.FindCustomers);
         }
 
         public void SwitchView(ApplicationPage page)
@@ -56,8 +70,14 @@ namespace WpfApp.Desktop.ViewModels
             {
                 case ApplicationPage.Home:
                     break;
-                case ApplicationPage.FindReport:
+                case ApplicationPage.FindReports:
                     ContentControlView = new FindReportView();
+                    break;
+                case ApplicationPage.CreateCustomer:
+                    ContentControlView = new CreateCustomerView();
+                    break;
+                case ApplicationPage.FindCustomers:
+                    ContentControlView = new FindCustomerView();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(page), page, null);

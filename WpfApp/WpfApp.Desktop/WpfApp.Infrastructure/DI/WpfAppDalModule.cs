@@ -10,9 +10,11 @@ namespace WpfApp.Infrastructure.DI
 {
     public class WpfAppDalModule : Module
     {
+        public string ConnectionString { get; set; }
+
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<WpfAppContext>().AsSelf().InstancePerLifetimeScope();
+            builder.Register(c => new WpfAppContext(ConnectionString)).AsSelf().InstancePerLifetimeScope();
         }
     }
 }

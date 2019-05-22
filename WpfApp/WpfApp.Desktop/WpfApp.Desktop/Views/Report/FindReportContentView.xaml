@@ -7,6 +7,6 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding FindReportContentViewModel, Source={StaticResource Locator}}">
     <Grid>
-        <DataGrid x:Name="FindReportContentDataGrid" ItemsSource="{Binding CustomersList}" />
+        <DataGrid x:Name="FindReportContentDataGrid" ItemsSource="{Binding ReportsList}" />
     </Grid>
 </UserControl>

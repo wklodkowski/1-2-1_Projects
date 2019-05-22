@@ -16,7 +16,8 @@ namespace WpfApp.BLL.Reports.Mappers
             var result = new ReportModel
             {
                 ReportId = report.ReportId,
-                Title = report.Title,
+                Number = report.Number,
+                Amount = report.Amount,
                 CreationDate = report.CreationDate.ToShortDateString()
             };
 

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp.Desktop.Mappers.Report.Interfaces
+namespace WpfApp.Desktop.Common.Pages.Customer.Enums
 {
-    public interface IReportMapper
+    public enum FindCustomerPage
     {
+        Blank,
+        FindCustomerContent
     }
 }

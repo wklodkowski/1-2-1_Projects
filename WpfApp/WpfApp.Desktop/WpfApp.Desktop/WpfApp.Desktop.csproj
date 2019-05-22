@@ -44,6 +44,12 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=0ffbc31322e9d308, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
     </Reference>
@@ -51,6 +57,8 @@
       <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -73,19 +81,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Pages\Customer\Enums\FindCustomerPage.cs" />
+    <Compile Include="Common\Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
     <Compile Include="Common\Pages\Main\Enum\ApplicationPage.cs" />
     <Compile Include="Common\Pages\Report\Enums\FindReportPage.cs" />
     <Compile Include="Common\Pages\Report\Models\SwitchReportViewMessageModel.cs" />
     <Compile Include="Common\Pages\Main\Models\SwitchViewMessageModel.cs" />
-    <Compile Include="Mappers\Report\Interfaces\IReportMapper.cs" />
-    <Compile Include="Mappers\Report\ReportMapper.cs" />
-    <Compile Include="Models\Reports\Messages\FindReportContentMessage.cs" />
-    <Compile Include="Models\Reports\ReportModel.cs" />
+    <Compile Include="Mappers\Customer\CustomerDesktopMapper.cs" />
+    <Compile Include="Mappers\Customer\Interfaces\ICustomerDesktopMapper.cs" />
+    <Compile Include="Mappers\Report\Interfaces\IReportDesktopMapper.cs" />
+    <Compile Include="Mappers\Report\ReportDesktopMapper.cs" />
+    <Compile Include="Models\Customer\CustomerContentModel.cs" />
+    <Compile Include="Models\Customer\Messages\FindCustomerContentMessage.cs" />
+    <Compile Include="Models\Report\Messages\FindReportContentMessage.cs" />
+    <Compile Include="Models\Report\ReportContentModel.cs" />
+    <Compile Include="ViewModels\Customer\FindCustomerContentViewModel.cs" />
+    <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\Customer\FindCustomerViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportContentViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\Customer\CreateCustomerView.xaml.cs">
+      <DependentUpon>CreateCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\FindCustomerContentView.xaml.cs">
+      <DependentUpon>FindCustomerContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\FindCustomerView.xaml.cs">
+      <DependentUpon>FindCustomerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +133,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\Customer\CreateCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\FindCustomerContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\FindCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Home\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -8,14 +8,14 @@ using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using WpfApp.BLL.Reports.Services.Interfaces;
-using WpfApp.Desktop.Models.Reports;
-using WpfApp.Desktop.Models.Reports.Messages;
+using WpfApp.Desktop.Models.Report;
+using WpfApp.Desktop.Models.Report.Messages;
 
 namespace WpfApp.Desktop.ViewModels.Report
 {
     public class FindReportContentViewModel : ViewModelBase
     {
-        private ObservableCollection<ReportModel> _customersList;
+        private ObservableCollection<ReportContentModel> _reportList;
         private readonly IReportService _reportService;
 
         public FindReportContentViewModel(IReportService reportService)
@@ -24,28 +24,28 @@ namespace WpfApp.Desktop.ViewModels.Report
             RegisterSwitchReportMessage();
         }
 
-        public ObservableCollection<ReportModel> CustomersList
+        public ObservableCollection<ReportContentModel> ReportsList
         {
-            get => _customersList;
+            get => _reportList;
             set
             {
-                _customersList = value;
-                RaisePropertyChanged("CustomersList");
+                _reportList = value;
+                RaisePropertyChanged("ReportsList");
             }
         }
 
-        public void RegisterSwitchReportMessage()
+        private void RegisterSwitchReportMessage()
         {
-            Messenger.Default.Register<FindReportContentModel>(this, HandleMessage);
+            Messenger.Default.Register<FindReportContentMessage>(this, HandleRegisterSwitchReportMessage);
         }
 
-        private void HandleMessage(FindReportContentModel message)
+        private void HandleRegisterSwitchReportMessage(FindReportContentMessage message)
         {
             //TODO: Read dynamic data from services
 
             //var reportsForClient = _reportService.GetAllReportsForClient(message.ClientId);
 
-            CustomersList = new ObservableCollection<ReportModel>();
+            ReportsList = new ObservableCollection<ReportContentModel>();
     
             //CustomersList.Add(new ReportModel
             //{
