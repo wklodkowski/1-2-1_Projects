@@ -44,11 +44,12 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
         {
             CustomerList = new ObservableCollection<CustomerContentModel>();
-            var customerModelList = _customerService.GetCustomersByLastName(findCustomerContentMessage.LastName);
+            var customerModel = _customerDesktopMapper.ToCustomerModel(findCustomerContentMessage);
+            var customerModelList = _customerService.GetCustomers(customerModel);
 
-            foreach (var customerModel in customerModelList)
+            foreach (var customer in customerModelList)
             {
-                var customerContentModel = _customerDesktopMapper.ToCustomerContentModel(customerModel);
+                var customerContentModel = _customerDesktopMapper.ToCustomerContentModel(customer);
                 CustomerList.Add(customerContentModel);
             }
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp.BLL.Customers.Models;
 using WpfApp.Desktop.Models.Customer;
+using WpfApp.Desktop.Models.Customer.Messages;
 
 namespace WpfApp.Desktop.Mappers.Customer.Interfaces
 {
@@ -12,5 +13,6 @@ namespace WpfApp.Desktop.Mappers.Customer.Interfaces
     {
         CustomerContentModel ToCustomerContentModel(CustomerModel customerModel);
         CustomerModel ToCustomerModel(CustomerContentModel customerContentModel);
+        CustomerModel ToCustomerModel(FindCustomerContentMessage findCustomerContentMessage);
     }
 }

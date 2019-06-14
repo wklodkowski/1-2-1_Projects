@@ -10,6 +10,6 @@ namespace WpfApp.BLL.Customers.Services.Interfaces
     public interface ICustomerService
     {
         void CreateCustomer(CustomerModel customer);
-        List<CustomerModel> GetCustomersByLastName(string lastName);
+        List<CustomerModel> GetCustomers(CustomerModel customerModel);
     }
 }

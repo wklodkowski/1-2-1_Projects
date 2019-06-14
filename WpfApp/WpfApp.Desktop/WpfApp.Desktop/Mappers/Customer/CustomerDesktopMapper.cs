@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WpfApp.BLL.Customers.Models;
 using WpfApp.Desktop.Mappers.Customer.Interfaces;
 using WpfApp.Desktop.Models.Customer;
+using WpfApp.Desktop.Models.Customer.Messages;
 
 namespace WpfApp.Desktop.Mappers.Customer
 {
@@ -34,6 +35,20 @@ namespace WpfApp.Desktop.Mappers.Customer
                 LastName = customerContentModel.LastName,
                 Address = customerContentModel.Address,
                 Telephone = customerContentModel.Telephone
+            };
+
+            return result;
+        }
+
+        public CustomerModel ToCustomerModel(FindCustomerContentMessage findCustomerContentMessage)
+        {
+            var result = new CustomerModel
+            {
+                CustomerId = findCustomerContentMessage.CustomerId,
+                FirstName = findCustomerContentMessage.FirstName,
+                LastName = findCustomerContentMessage.LastName,
+                Address = findCustomerContentMessage.Address,
+                Telephone = findCustomerContentMessage.Telephone
             };
 
             return result;
