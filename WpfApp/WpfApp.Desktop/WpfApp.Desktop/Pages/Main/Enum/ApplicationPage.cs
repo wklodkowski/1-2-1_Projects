@@ -1,4 +1,4 @@
-﻿namespace WpfApp.Desktop.Common.Pages.Main.Enum
+﻿namespace WpfApp.Desktop.Pages.Main.Enum
 {
     public enum ApplicationPage
     {

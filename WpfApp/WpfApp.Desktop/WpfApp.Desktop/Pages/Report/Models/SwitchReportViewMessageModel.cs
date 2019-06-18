@@ -1,6 +1,6 @@
-﻿using WpfApp.Desktop.Common.Pages.Report.Enums;
+﻿using WpfApp.Desktop.Pages.Report.Enums;
 
-namespace WpfApp.Desktop.Common.Pages.Report.Models
+namespace WpfApp.Desktop.Pages.Report.Models
 {
     public class SwitchReportViewMessageModel
     {

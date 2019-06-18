@@ -81,12 +81,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Common\Pages\Customer\Enums\FindCustomerPage.cs" />
-    <Compile Include="Common\Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
-    <Compile Include="Common\Pages\Main\Enum\ApplicationPage.cs" />
-    <Compile Include="Common\Pages\Report\Enums\FindReportPage.cs" />
-    <Compile Include="Common\Pages\Report\Models\SwitchReportViewMessageModel.cs" />
-    <Compile Include="Common\Pages\Main\Models\SwitchViewMessageModel.cs" />
+    <Compile Include="Common\AsyncCommand\AsyncCommand.cs" />
+    <Compile Include="Common\AsyncCommand\AsyncCommandBase.cs" />
+    <Compile Include="Common\AsyncCommand\Interfaces\IAsyncCommand.cs" />
+    <Compile Include="Common\AsyncCommand\NotifyTaskCompletion.cs" />
+    <Compile Include="Pages\Customer\Enums\FindCustomerPage.cs" />
+    <Compile Include="Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
+    <Compile Include="Pages\Main\Enum\ApplicationPage.cs" />
+    <Compile Include="Pages\Report\Enums\FindReportPage.cs" />
+    <Compile Include="Pages\Report\Models\SwitchReportViewMessageModel.cs" />
+    <Compile Include="Pages\Main\Models\SwitchViewMessageModel.cs" />
     <Compile Include="Mappers\Customer\CustomerDesktopMapper.cs" />
     <Compile Include="Mappers\Customer\Interfaces\ICustomerDesktopMapper.cs" />
     <Compile Include="Mappers\Report\Interfaces\IReportDesktopMapper.cs" />
@@ -95,6 +99,7 @@
     <Compile Include="Models\Customer\Messages\FindCustomerContentMessage.cs" />
     <Compile Include="Models\Report\Messages\FindReportContentMessage.cs" />
     <Compile Include="Models\Report\ReportContentModel.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\Customer\FindCustomerContentViewModel.cs" />
     <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\Customer\FindCustomerViewModel.cs" />

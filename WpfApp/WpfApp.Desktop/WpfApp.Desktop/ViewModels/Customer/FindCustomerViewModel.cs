@@ -8,9 +8,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using WpfApp.Desktop.Common.Pages.Customer.Enums;
-using WpfApp.Desktop.Common.Pages.Customer.Models;
 using WpfApp.Desktop.Models.Customer.Messages;
+using WpfApp.Desktop.Pages.Customer.Enums;
+using WpfApp.Desktop.Pages.Customer.Models;
 using WpfApp.Desktop.Views.Customer;
 
 namespace WpfApp.Desktop.ViewModels.Customer

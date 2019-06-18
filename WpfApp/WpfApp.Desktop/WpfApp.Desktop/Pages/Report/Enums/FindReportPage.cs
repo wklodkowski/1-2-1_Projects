@@ -1,4 +1,4 @@
-﻿namespace WpfApp.Desktop.Common.Pages.Report.Enums
+﻿namespace WpfApp.Desktop.Pages.Report.Enums
 {
     public enum FindReportPage
     {

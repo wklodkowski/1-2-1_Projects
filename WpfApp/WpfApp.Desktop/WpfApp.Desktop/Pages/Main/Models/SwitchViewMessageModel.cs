@@ -1,6 +1,6 @@
-﻿using WpfApp.Desktop.Common.Pages.Main.Enum;
+﻿using WpfApp.Desktop.Pages.Main.Enum;
 
-namespace WpfApp.Desktop.Common.Pages.Main.Models
+namespace WpfApp.Desktop.Pages.Main.Models
 {
     public class SwitchViewMessageModel
     {

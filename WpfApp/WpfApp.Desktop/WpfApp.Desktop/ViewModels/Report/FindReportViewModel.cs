@@ -4,9 +4,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using WpfApp.Desktop.Common.Pages.Report.Enums;
-using WpfApp.Desktop.Common.Pages.Report.Models;
 using WpfApp.Desktop.Models.Report.Messages;
+using WpfApp.Desktop.Pages.Report.Enums;
+using WpfApp.Desktop.Pages.Report.Models;
 using WpfApp.Desktop.Views.Report;
 
 namespace WpfApp.Desktop.ViewModels.Report
