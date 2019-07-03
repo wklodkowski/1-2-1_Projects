@@ -85,6 +85,9 @@
     <Compile Include="Common\AsyncCommand\AsyncCommandBase.cs" />
     <Compile Include="Common\AsyncCommand\Interfaces\IAsyncCommand.cs" />
     <Compile Include="Common\AsyncCommand\NotifyTaskCompletion.cs" />
+    <Compile Include="Common\AsyncMessenger\AsyncMessage.cs" />
+    <Compile Include="Common\AsyncMessenger\AsyncMessageReceiver.cs" />
+    <Compile Include="Common\AsyncMessenger\AsyncMessenger.cs" />
     <Compile Include="Pages\Customer\Enums\FindCustomerPage.cs" />
     <Compile Include="Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
     <Compile Include="Pages\Main\Enum\ApplicationPage.cs" />
