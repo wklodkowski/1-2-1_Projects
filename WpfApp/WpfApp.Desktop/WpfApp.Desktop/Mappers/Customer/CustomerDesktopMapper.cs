@@ -39,19 +39,5 @@ namespace WpfApp.Desktop.Mappers.Customer
 
             return result;
         }
-
-        public CustomerModel ToCustomerModel(FindCustomerContentMessage findCustomerContentMessage)
-        {
-            var result = new CustomerModel
-            {
-                CustomerId = findCustomerContentMessage.CustomerId,
-                FirstName = findCustomerContentMessage.FirstName,
-                LastName = findCustomerContentMessage.LastName,
-                Address = findCustomerContentMessage.Address,
-                Telephone = findCustomerContentMessage.Telephone
-            };
-
-            return result;
-        }
     }
 }

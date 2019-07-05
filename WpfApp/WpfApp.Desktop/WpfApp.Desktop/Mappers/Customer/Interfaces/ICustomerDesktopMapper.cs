@@ -13,6 +13,5 @@ namespace WpfApp.Desktop.Mappers.Customer.Interfaces
     {
         CustomerContentModel ToCustomerContentModel(CustomerModel customerModel);
         CustomerModel ToCustomerModel(CustomerContentModel customerContentModel);
-        CustomerModel ToCustomerModel(FindCustomerContentMessage findCustomerContentMessage);
     }
 }

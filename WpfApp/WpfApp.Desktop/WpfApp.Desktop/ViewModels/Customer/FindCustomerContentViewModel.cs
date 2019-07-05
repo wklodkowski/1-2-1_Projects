@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using WpfApp.BLL.Customers.Services.Interfaces;
-using WpfApp.Desktop.Mappers.Customer.Interfaces;
 using WpfApp.Desktop.Models.Customer;
 using WpfApp.Desktop.Models.Customer.Messages;
 
@@ -16,13 +14,9 @@ namespace WpfApp.Desktop.ViewModels.Customer
     public class FindCustomerContentViewModel : ViewModelBase
     {
         private ObservableCollection<CustomerContentModel> _customersList;
-        private readonly ICustomerService _customerService;
-        private readonly ICustomerDesktopMapper _customerDesktopMapper;
 
-        public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
+        public FindCustomerContentViewModel()
         {
-            _customerService = customerService;
-            _customerDesktopMapper = customerDesktopMapper;
             RegisterSwitchCustomerMessage();
         }
 
@@ -44,13 +38,10 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
         {
             CustomerList = new ObservableCollection<CustomerContentModel>();
-            var customerModel = _customerDesktopMapper.ToCustomerModel(findCustomerContentMessage);
-            var customerModelList = _customerService.GetCustomers(customerModel);
 
-            foreach (var customer in customerModelList)
+            foreach (var customer in findCustomerContentMessage.Customers)
             {
-                var customerContentModel = _customerDesktopMapper.ToCustomerContentModel(customer);
-                CustomerList.Add(customerContentModel);
+                CustomerList.Add(customer);
             }
         }
     }
