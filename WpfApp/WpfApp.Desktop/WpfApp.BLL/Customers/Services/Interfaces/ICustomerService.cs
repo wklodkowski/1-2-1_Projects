@@ -10,6 +10,6 @@ namespace WpfApp.BLL.Customers.Services.Interfaces
     public interface ICustomerService
     {
         void CreateCustomer(CustomerModel customer);
-        Task<List<CustomerModel>> GetCustomersAsync(CustomerModel customerModel);
+        List<CustomerModel> GetCustomers(CustomerModel customerModel);
     }
 }

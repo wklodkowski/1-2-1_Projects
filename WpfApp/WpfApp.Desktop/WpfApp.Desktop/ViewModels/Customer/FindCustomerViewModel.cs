@@ -8,9 +8,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
-using WpfApp.Desktop.Common.AsyncCommand;
-using WpfApp.Desktop.Common.AsyncCommand.Interfaces;
-using WpfApp.Desktop.Common.AsyncMessenger;
 using WpfApp.Desktop.Models.Customer.Messages;
 using WpfApp.Desktop.Pages.Customer.Enums;
 using WpfApp.Desktop.Pages.Customer.Models;
@@ -26,12 +23,12 @@ namespace WpfApp.Desktop.ViewModels.Customer
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public IAsyncCommand FindCustomerContentCommand { get; set; }
+        public ICommand FindCustomerContentCommand { get; set; }
 
         public FindCustomerViewModel()
         {
             RegisterSwitchCustomerMessage();
-            FindCustomerContentCommand = new AsyncCommand<bool>(FindCustomerContentAsync);
+            FindCustomerContentCommand = new RelayCommand(FindCustomerContent);
         }
 
         public void RegisterSwitchCustomerMessage()
@@ -42,7 +39,7 @@ namespace WpfApp.Desktop.ViewModels.Customer
             });
         }
 
-        public async Task<bool> FindCustomerContentAsync()
+        public void FindCustomerContent()
         {
             var findCustomerContentModel = new FindCustomerContentMessage
             {
@@ -52,23 +49,8 @@ namespace WpfApp.Desktop.ViewModels.Customer
             };
 
             SwitchCustomerView(FindCustomerPage.FindCustomerContent);
-            await Messenger.Default.SendAsync(findCustomerContentModel);
-
-            return true;
+            Messenger.Default.Send(findCustomerContentModel);
         }
-
-        //public void FindCustomerContent()
-        //{
-        //    var findCustomerContentModel = new FindCustomerContentMessage
-        //    {
-        //        CustomerId = ClientId,
-        //        FirstName = FirstName,
-        //        LastName = LastName
-        //    };
-
-        //    SwitchCustomerView(FindCustomerPage.FindCustomerContent);
-        //    Messenger.Default.Send(findCustomerContentModel);
-        //}
 
         public FrameworkElement ContentControlFindCustomerContentView
         {
