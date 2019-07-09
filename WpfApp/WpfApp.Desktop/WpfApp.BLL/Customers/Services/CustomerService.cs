@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using WpfApp.BLL.Customers.Mappers.Interfaces;
 using WpfApp.BLL.Customers.Models;
@@ -46,7 +47,8 @@ namespace WpfApp.BLL.Customers.Services
             await FilterOrGetCustomersByTelephoneAsync(result, customerModel);
 
             //https://stackoverflow.com/questions/39979864/ef6-query-criteria-using-object-properties-that-arent-null
-            //Użycie warunku sprawdzajacego null warotsci, spowoduje nie potrzbne nullowe zapytanie do bazy
+            //Użycie warunku sprawdzajacego null warotsci, spowoduje nie potrzbne nullowe zapytanie do bazy 
+            Thread.Sleep(10000);
             return result;
         }
 
@@ -102,7 +104,7 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = await _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToListAsync();
+            var customersDb = await _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToListAsync().ConfigureAwait(false);
             customers.AddRange(customersDb);
         }
 

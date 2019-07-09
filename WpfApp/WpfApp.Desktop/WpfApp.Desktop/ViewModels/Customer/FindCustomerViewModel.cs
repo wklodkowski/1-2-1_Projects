@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
@@ -38,7 +39,7 @@ namespace WpfApp.Desktop.ViewModels.Customer
             _customerService = customerService;
             _customerDesktopMapper = customerDesktopMapper;
             RegisterSwitchCustomerMessage();
-            FindCustomerContentCommand = new AsyncCommand<bool>(FindCustomerContent);
+            FindCustomerContentCommand = new AsyncCommand<bool>(FindCustomerContentAsync);
         }
 
         public void RegisterSwitchCustomerMessage()
@@ -49,7 +50,7 @@ namespace WpfApp.Desktop.ViewModels.Customer
             });
         }
 
-        public async Task<bool> FindCustomerContent()
+        public async Task<bool> FindCustomerContentAsync()
         {
             var customerModel = new CustomerModel
             {
@@ -58,13 +59,8 @@ namespace WpfApp.Desktop.ViewModels.Customer
                 LastName = LastName
             };
 
-            var result = await _customerService.GetCustomersAsync(customerModel);
-            var customerContentModelList = GetFindCustomerContentMessage(result);
-
-            SwitchCustomerView(FindCustomerPage.FindCustomerContent);
-            Messenger.Default.Send(customerContentModelList);
-
-            return true;
+            await Task.Run(async () => await GetCustomer(customerModel));
+            return await Task.FromResult(true);
         }
 
         public FrameworkElement ContentControlFindCustomerContentView
@@ -104,6 +100,15 @@ namespace WpfApp.Desktop.ViewModels.Customer
             }
 
             return findCustomerContentMessage;
+        }
+
+        private async Task GetCustomer(CustomerModel customerModel)
+        {
+            var result = await _customerService.GetCustomersAsync(customerModel);
+            var customerContentModelList = GetFindCustomerContentMessage(result);
+
+            Application.Current.Dispatcher.Invoke(() => { SwitchCustomerView(FindCustomerPage.FindCustomerContent); });
+            Messenger.Default.Send(customerContentModelList);
         }
     }
 }
