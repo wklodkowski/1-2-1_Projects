@@ -1,0 +1,23 @@
+1. select AddressLine1 from Person.Address 
+where (City = 'Toronto' and AddressLine2 != NULL) or PostalCode = 'M4B 1V7';
+
+2. select Person.StateProvince.Name, Person.StateProvince.StateProvinceID 
+from Person.StateProvince 
+left join Person.Address on Person.StateProvince.StateProvinceID = Person.Address.StateProvinceID
+where Person.Address.StateProvinceID is null;
+
+3.select * from Person.Person
+join Person.BusinessEntityAddress on Person.BusinessEntityAddress.BusinessEntityID = Person.Person.BusinessEntityID
+join Person.AddressType on Person.AddressType.AddressTypeID = Person.BusinessEntityAddress.AddressTypeID
+join Person.Address on Person.Address.AddressID = Person.BusinessEntityAddress.AddressID
+where Person.Address.PostalCode = '98006' and Person.AddressType.Name = 'Home';
+
+4.select Person.Address.AddressID, Person.StateProvince.Name, Person.Address.ModifiedDate from Person.Address 
+join Person.StateProvince on Person.StateProvince.StateProvinceID = Person.Address.StateProvinceID
+where Person.Address.ModifiedDate >= '2013-01-01 00:00:00' and Person.Address.ModifiedDate < '2014-01-01 00:00:00'
+order by Person.Address.ModifiedDate desc;
+
+5. select Person.StateProvince.StateProvinceID, count(Person.Address.AddressID) from Person.StateProvince
+join Person.Address on Person.Address.StateProvinceID = Person.StateProvince.StateProvinceID
+group by Person.StateProvince.StateProvinceID
+having count(Person.Address.AddressID) > 1;

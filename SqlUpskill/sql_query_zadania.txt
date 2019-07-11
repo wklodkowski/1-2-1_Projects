@@ -1,0 +1,15 @@
+https://github.com/Microsoft/sql-server-samples/releases/tag/adventureworks 
+Adventure Works 2014 Full Database Backup
+
+1. Znajdz wszystkie adresy z miastem Toronto, gdzie AddressLine2 nie jest puste lub PostalCode to „M4B 1V7”.
+2. Wyswietl liste nazw stanów / prowincji (Person.StateProvince) nie wykorzystanych w zadnym adresie. 
+3. Znajdz liste wszystkich osób, majacych adres domowy (Home) z kodem pocztowym 98006.
+4. Znajdz liste wszystkich adresów edytowanych ostatnio w roku 2013.
+     Wyswietl numer ID adresu, nazwe stanu/prowincji oraz date modyfikacji adresu.
+     Wyniki powinny byc posortowane wedlug daty modyfikacji (najnowsza data na samej górze).
+5. Wyswietl liste wszystkich numerów ID dla stanów/prowincji. Obok kazdego numeru powinna sie znajdowac liczba adresów, które wykorzystuja dany stan/prowincje.
+
+Do kazdego zadania powinien byc jeden SELECT zwracajacy odpowiednie wyniki.
+
+Dalsza czesc:
+W projekcie .NETowym skonfigurowac Entity Framework do powyzszej bazy i napisac te same zapytania tylko przy pomocy C# i EF.
