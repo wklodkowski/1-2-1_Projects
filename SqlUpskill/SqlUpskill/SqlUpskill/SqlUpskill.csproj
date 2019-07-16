@@ -142,6 +142,7 @@
     <Compile Include="Location.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StateProvinceModel.cs" />
     <Compile Include="Password.cs">
       <DependentUpon>DatabaseFirstModel.tt</DependentUpon>
     </Compile>
