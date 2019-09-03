@@ -9,5 +9,12 @@
              DataContext="{Binding FindCustomerContentViewModel, Source={StaticResource Locator}}">
     <Grid>
         <DataGrid x:Name="FindReportContentDataGrid" ItemsSource="{Binding CustomerList}" />
+        <!--<Grid VerticalAlignment="Bottom">
+            <loadingSpinner:LoadingPanel x:Name="loadingPanel"
+                              IsLoading="{Binding IsLoadingPanelVisible}"
+                              Message="{Binding PanelMainMessage}"
+                              SubMessage="{Binding PanelSubMessage}" 
+                              ClosePanelCommand="{Binding PanelCloseCommand}" />
+        </Grid>-->
     </Grid>
 </UserControl>

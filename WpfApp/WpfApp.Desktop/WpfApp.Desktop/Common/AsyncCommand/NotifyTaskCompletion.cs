@@ -29,7 +29,7 @@ namespace WpfApp.Desktop.Common.AsyncCommand
 
         private async Task WatchTaskAsync(Task task)
         {
-
+            
         }
     }
 }

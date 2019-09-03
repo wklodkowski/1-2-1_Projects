@@ -8,6 +8,6 @@
              xmlns:viewModels="clr-namespace:WpfApp.Desktop.ViewModels">
     <Application.Resources>
         <viewModels:ViewModelLocator x:Key="Locator" 
-                             d:IsDataSource="True" />
+                            d:IsDataSource="True" />
     </Application.Resources>
 </Application>

@@ -85,6 +85,14 @@
     <Compile Include="Common\AsyncCommand\AsyncCommandBase.cs" />
     <Compile Include="Common\AsyncCommand\Interfaces\IAsyncCommand.cs" />
     <Compile Include="Common\AsyncCommand\NotifyTaskCompletion.cs" />
+    <Compile Include="Controls\LoadingSpinner\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\LoadingSpinner\LoadingPanel.xaml.cs">
+      <DependentUpon>LoadingPanel.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pages\Customer\Enums\FindCustomerPage.cs" />
     <Compile Include="Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
     <Compile Include="Pages\Main\Enum\ApplicationPage.cs" />
@@ -126,6 +134,14 @@
     <Compile Include="Views\Report\FindReportView.xaml.cs">
       <DependentUpon>FindReportView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\LoadingSpinner\CircularProgressBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Controls\LoadingSpinner\LoadingPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,7 +207,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
     <Folder Include="Converters\Pages\" />
   </ItemGroup>
   <ItemGroup>

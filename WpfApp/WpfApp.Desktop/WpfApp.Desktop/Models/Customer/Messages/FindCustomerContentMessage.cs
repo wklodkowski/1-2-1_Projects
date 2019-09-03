@@ -8,6 +8,6 @@ namespace WpfApp.Desktop.Models.Customer.Messages
 {
     public class FindCustomerContentMessage
     {
-        public List<CustomerContentModel> Customers { get; set; }
+        public CustomerContentModel CustomerContentModel { get; set; }
     }
 }

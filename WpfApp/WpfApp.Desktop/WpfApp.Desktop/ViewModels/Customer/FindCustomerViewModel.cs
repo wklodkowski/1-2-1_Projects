@@ -24,22 +24,18 @@ namespace WpfApp.Desktop.ViewModels.Customer
 {
     public class FindCustomerViewModel : ViewModelBase
     {
-        private readonly ICustomerService _customerService;
-        private readonly ICustomerDesktopMapper _customerDesktopMapper;
         private FrameworkElement _contentControlFindCustomerContentView;
 
-        public int ClientId { get; set; }
+        public int CustomerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public IAsyncCommand FindCustomerContentCommand { get; set; }
+        public ICommand FindCustomerContentCommand { get; set; }
 
-        public FindCustomerViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
+        public FindCustomerViewModel()
         {
-            _customerService = customerService;
-            _customerDesktopMapper = customerDesktopMapper;
             RegisterSwitchCustomerMessage();
-            FindCustomerContentCommand = new AsyncCommand<bool>(FindCustomerContentAsync);
+            FindCustomerContentCommand = new RelayCommand(FindCustomerContent);
         }
 
         public void RegisterSwitchCustomerMessage()
@@ -50,17 +46,19 @@ namespace WpfApp.Desktop.ViewModels.Customer
             });
         }
 
-        public async Task<bool> FindCustomerContentAsync()
+        public void FindCustomerContent()
         {
-            var customerModel = new CustomerModel
+            var findCustomerContentMessage = new FindCustomerContentMessage()
             {
-                CustomerId = ClientId,
-                FirstName = FirstName,
-                LastName = LastName
+                CustomerContentModel = new CustomerContentModel
+                {
+                    CustomerId = CustomerId,
+                    FirstName = FirstName,
+                    LastName = LastName
+                }
             };
-
-            await Task.Run(async () => await GetCustomer(customerModel));
-            return await Task.FromResult(true);
+            SwitchCustomerView(FindCustomerPage.FindCustomerContent);
+            Messenger.Default.Send(findCustomerContentMessage);
         }
 
         public FrameworkElement ContentControlFindCustomerContentView
@@ -87,28 +85,17 @@ namespace WpfApp.Desktop.ViewModels.Customer
             }
         }
 
-        private FindCustomerContentMessage GetFindCustomerContentMessage(List<CustomerModel> customerModelList)
-        {
-            var findCustomerContentMessage = new FindCustomerContentMessage
-            {
-                Customers = new List<CustomerContentModel>()
-            };
+        //private async Task GetCustomer(CustomerModel customerModel)
+        //{
+        //    var result = await _customerService.GetCustomersAsync(customerModel);
+        //    var customerContentModelList = GetFindCustomerContentMessage(result);
 
-            foreach (var customerModel in customerModelList)
-            {
-                findCustomerContentMessage.Customers.Add(_customerDesktopMapper.ToCustomerContentModel(customerModel));
-            }
-
-            return findCustomerContentMessage;
-        }
-
-        private async Task GetCustomer(CustomerModel customerModel)
-        {
-            var result = await _customerService.GetCustomersAsync(customerModel);
-            var customerContentModelList = GetFindCustomerContentMessage(result);
-
-            Application.Current.Dispatcher.Invoke(() => { SwitchCustomerView(FindCustomerPage.FindCustomerContent); });
-            Messenger.Default.Send(customerContentModelList);
-        }
+        //    if (Application.Current.Dispatcher != null)
+        //        Application.Current.Dispatcher.Invoke(() =>
+        //        {
+        //            SwitchCustomerView(FindCustomerPage.FindCustomerContent);
+        //        });
+        //    Messenger.Default.Send(customerContentModelList);
+        //}
     }
 }

@@ -33,6 +33,7 @@ namespace WpfApp.BLL.Customers.Services
 
         public async Task<List<CustomerModel>> GetCustomersAsync(CustomerModel customerModel)
         {
+            Thread.Sleep(10000);
             var customersDb = await GetCustomersFromDataBaseAsync(customerModel);
             return customersDb.Select(customer => _customerMapper.ToCustomerModel(customer)).ToList();
         }

@@ -24,7 +24,7 @@
                     </GroupBox.Header>
                     <StackPanel>
                         <Label Content="Client ID:"/>
-                        <TextBox Text="{Binding ClientId}"/>
+                        <TextBox Text="{Binding CustomerId}"/>
                         <Label Content="First Name:"/>
                         <TextBox Text="{Binding FirstName}"/>
                         <Label Content="Last Name:"/>
