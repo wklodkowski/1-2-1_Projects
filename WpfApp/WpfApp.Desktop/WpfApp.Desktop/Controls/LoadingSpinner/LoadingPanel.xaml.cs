@@ -31,9 +31,6 @@ namespace WpfApp.Desktop.Controls.LoadingSpinner
             DependencyProperty.Register("SubMessage", typeof(string), typeof(LoadingPanel),
                 new UIPropertyMetadata(string.Empty));
 
-        public static readonly DependencyProperty ClosePanelCommandProperty =
-            DependencyProperty.Register("ClosePanelCommand", typeof(ICommand), typeof(LoadingPanel));
-
         /// <summary>
         /// Initializes a new instance of the <see cref="LoadingPanel"/> class.
         /// </summary>
@@ -72,29 +69,6 @@ namespace WpfApp.Desktop.Controls.LoadingSpinner
         {
             get { return (string) GetValue(SubMessageProperty); }
             set { SetValue(SubMessageProperty, value); }
-        }
-
-        /// <summary>
-        /// Gets or sets the close panel command.
-        /// </summary>
-        /// <value>The close panel command.</value>
-        public ICommand ClosePanelCommand
-        {
-            get { return (ICommand) GetValue(ClosePanelCommandProperty); }
-            set { SetValue(ClosePanelCommandProperty, value); }
-        }
-
-        /// <summary>
-        /// Called when [close click].
-        /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="System.Windows.RoutedEventArgs"/> instance containing the event data.</param>
-        private void OnCloseClick(object sender, RoutedEventArgs e)
-        {
-            if (ClosePanelCommand != null)
-            {
-                ClosePanelCommand.Execute(null);
-            }
         }
     }
 }

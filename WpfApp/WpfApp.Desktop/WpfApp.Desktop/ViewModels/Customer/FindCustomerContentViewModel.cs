@@ -23,6 +23,8 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private readonly ICustomerDesktopMapper _customerDesktopMapper;
 
         private bool _isLoadingPanelVisible;
+        private string _panelMainMessage = "Loading...";
+        private string _panelSubMessage = "Please wait !";
 
         public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
         {
@@ -34,14 +36,31 @@ namespace WpfApp.Desktop.ViewModels.Customer
 
         public bool IsLoadingPanelVisible
         {
-            get
-            {
-                return _isLoadingPanelVisible;
-            }
+            get => _isLoadingPanelVisible;
             set
             {
                 _isLoadingPanelVisible = value;
                 RaisePropertyChanged("IsLoadingPanelVisible");
+            }
+        }
+
+        public string PanelMainMessage
+        {
+            get => _panelMainMessage;
+            set
+            {
+                _panelMainMessage = value;
+                RaisePropertyChanged("PanelMainMessage");
+            }
+        }
+
+        public string PanelSubMessage
+        {
+            get => _panelSubMessage;
+            set
+            {
+                _panelSubMessage = value;
+                RaisePropertyChanged("PanelSubMessage");
             }
         }
 
@@ -60,21 +79,52 @@ namespace WpfApp.Desktop.ViewModels.Customer
             Messenger.Default.Register<FindCustomerContentMessage>(this, HandleRegisterSwitchCustomerMessage);
         }
 
-        private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
         {
             IsLoadingPanelVisible = true;
-            var customers = Task.Run(async () => await GetCustomersAsync(findCustomerContentMessage.CustomerContentModel)).ConfigureAwait(false).GetAwaiter().GetResult();
+            var customers = Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel));
 
-            foreach (var customer in customers)
+            await customers.ContinueWith(
+                manifest =>
+                {
+                    if (manifest.Result == null)
+                        throw new InvalidOperationException();
+
+                    IsLoadingPanelVisible = false;
+                });
+
+            foreach (var customer in await customers)
             {
                 CustomerList.Add(customer);
             }
         }
 
-        private async Task<List<CustomerContentModel>> GetCustomersAsync(CustomerContentModel customerContentModel)
+        //private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //{
+        //    IsLoadingPanelVisible = true;
+        //    Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
+        //        manifest =>
+        //        {
+        //            if (manifest.Result == null)
+        //                throw new InvalidOperationException();
+
+        //            IsLoadingPanelVisible = false;
+
+        //            if (Application.Current.Dispatcher != null)
+        //                Application.Current.Dispatcher.Invoke(() =>
+        //                {
+        //                    foreach (var customer in manifest.Result)
+        //                    {
+        //                        CustomerList.Add(customer);
+        //                    }
+        //                });
+        //        });
+        //}
+
+        private List<CustomerContentModel> GetCustomers(CustomerContentModel customerContentModel)
         {
             var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
-            var customerModelList = await _customerService.GetCustomersAsync(customerModel);
+            var customerModelList = _customerService.GetCustomers(customerModel);
             var result = new List<CustomerContentModel>();
 
             foreach (var customer in customerModelList)

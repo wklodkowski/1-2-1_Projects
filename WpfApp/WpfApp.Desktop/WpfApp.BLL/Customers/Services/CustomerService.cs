@@ -31,29 +31,28 @@ namespace WpfApp.BLL.Customers.Services
             _wpfAppContext.SaveChanges();
         }
 
-        public async Task<List<CustomerModel>> GetCustomersAsync(CustomerModel customerModel)
+        public List<CustomerModel> GetCustomers(CustomerModel customerModel)
         {
-            Thread.Sleep(10000);
-            var customersDb = await GetCustomersFromDataBaseAsync(customerModel);
+            Thread.Sleep(5000);
+            var customersDb = GetCustomersFromDataBase(customerModel);
             return customersDb.Select(customer => _customerMapper.ToCustomerModel(customer)).ToList();
         }
 
-        private async Task<List<Customer>> GetCustomersFromDataBaseAsync(CustomerModel customerModel)
+        private List<Customer> GetCustomersFromDataBase(CustomerModel customerModel)
         {
             var result = new List<Customer>();
-            await GetCustomerByIdAsync(result, customerModel);
-            await FilterOrGetCustomersByFirstNameAsync(result, customerModel);
-            await FilterOrGetCustomersByLastNameAsync(result, customerModel);
-            await FilterOrGetCustomersByAddressAsync(result, customerModel);
-            await FilterOrGetCustomersByTelephoneAsync(result, customerModel);
+            GetCustomerById(result, customerModel);
+            FilterOrGetCustomersByFirstName(result, customerModel);
+            FilterOrGetCustomersByLastName(result, customerModel);
+            FilterOrGetCustomersByAddress(result, customerModel);
+            FilterOrGetCustomersByTelephone(result, customerModel);
 
             //https://stackoverflow.com/questions/39979864/ef6-query-criteria-using-object-properties-that-arent-null
-            //Użycie warunku sprawdzajacego null warotsci, spowoduje nie potrzbne nullowe zapytanie do bazy 
-            Thread.Sleep(10000);
+            //Użycie warunku sprawdzajacego null warotsci, spowoduje nie potrzbne nullowe zapytanie do bazy
             return result;
         }
 
-        private async Task GetCustomerByIdAsync(List<Customer> customers, CustomerModel customerModel)
+        private void GetCustomerById(List<Customer> customers, CustomerModel customerModel)
         {
             if (customerModel.CustomerId == 0)
             {
@@ -66,7 +65,7 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customerDb = await _wpfAppContext.Customers.SingleOrDefaultAsync(x => x.CustomerId == customerModel.CustomerId);
+            var customerDb = _wpfAppContext.Customers.SingleOrDefault(x => x.CustomerId == customerModel.CustomerId);
             if (customerDb == null)
             {
                 return;
@@ -75,7 +74,7 @@ namespace WpfApp.BLL.Customers.Services
             customers.Add(customerDb);
         }
 
-        private async Task FilterOrGetCustomersByFirstNameAsync(List<Customer> customers, CustomerModel customerModel)
+        private void FilterOrGetCustomersByFirstName(List<Customer> customers, CustomerModel customerModel)
         {
             if (string.IsNullOrEmpty(customerModel.FirstName))
             {
@@ -88,11 +87,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = await _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName).ToListAsync();
+            var customersDb = _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName);
             customers.AddRange(customersDb);
         }
 
-        private async Task FilterOrGetCustomersByLastNameAsync(List<Customer> customers, CustomerModel customerModel)
+        private void FilterOrGetCustomersByLastName(List<Customer> customers, CustomerModel customerModel)
         {
             if (string.IsNullOrEmpty(customerModel.LastName))
             {
@@ -105,11 +104,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = await _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToListAsync().ConfigureAwait(false);
+            var customersDb = _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName);
             customers.AddRange(customersDb);
         }
 
-        private async Task FilterOrGetCustomersByAddressAsync(List<Customer> customers, CustomerModel customerModel)
+        private void FilterOrGetCustomersByAddress(List<Customer> customers, CustomerModel customerModel)
         {
             if (string.IsNullOrEmpty(customerModel.Address))
             {
@@ -122,11 +121,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = await _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address)).ToListAsync();
+            var customersDb = _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address));
             customers.AddRange(customersDb);
         }
 
-        private async Task FilterOrGetCustomersByTelephoneAsync(List<Customer> customers, CustomerModel customerModel)
+        private void FilterOrGetCustomersByTelephone(List<Customer> customers, CustomerModel customerModel)
         {
             if (string.IsNullOrEmpty(customerModel.Telephone))
             {
@@ -139,118 +138,8 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = await _wpfAppContext.Customers.Where(x => x.Telephone == customerModel.Telephone).ToListAsync();
+            var customersDb = _wpfAppContext.Customers.Where(x => x.Telephone == customerModel.Telephone);
             customers.AddRange(customersDb);
         }
-
-        //public List<CustomerModel> GetCustomers(CustomerModel customerModel)
-        //{
-        //    var customersDb = GetCustomersFromDataBase(customerModel);
-        //    return customersDb.Select(customer => _customerMapper.ToCustomerModel(customer)).ToList();
-        //}
-
-        //private List<Customer> GetCustomersFromDataBase(CustomerModel customerModel)
-        //{
-        //    var result = new List<Customer>();
-        //    GetCustomerById(result, customerModel);
-        //    FilterOrGetCustomersByFirstName(result, customerModel);
-        //    FilterOrGetCustomersByLastName(result, customerModel);
-        //    FilterOrGetCustomersByAddress(result, customerModel);
-        //    FilterOrGetCustomersByTelephone(result, customerModel);
-
-        //    //https://stackoverflow.com/questions/39979864/ef6-query-criteria-using-object-properties-that-arent-null
-        //    //Użycie warunku sprawdzajacego null warotsci, spowoduje nie potrzbne nullowe zapytanie do bazy
-        //    return result;
-        //}
-
-        //private void GetCustomerById(List<Customer> customers, CustomerModel customerModel)
-        //{
-        //    if (customerModel.CustomerId == 0)
-        //    {
-        //        return;
-        //    }
-
-        //    if (customers.Count > 0)
-        //    {
-        //        customers.RemoveAll(x => x.CustomerId != customerModel.CustomerId);
-        //        return;
-        //    }
-
-        //    var customerDb = _wpfAppContext.Customers.SingleOrDefault(x => x.CustomerId == customerModel.CustomerId);
-        //    if (customerDb == null)
-        //    {
-        //        return;
-        //    }
-
-        //    customers.Add(customerDb);
-        //}
-
-        //private void FilterOrGetCustomersByFirstName(List<Customer> customers, CustomerModel customerModel)
-        //{
-        //    if (string.IsNullOrEmpty(customerModel.FirstName))
-        //    {
-        //        return;
-        //    }
-
-        //    if (customers.Count > 0)
-        //    {
-        //        customers.RemoveAll(x => x.FirstName != customerModel.FirstName);
-        //        return;
-        //    }
-
-        //    var customersDb = _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName);
-        //    customers.AddRange(customersDb);
-        //}
-
-        //private void FilterOrGetCustomersByLastName(List<Customer> customers, CustomerModel customerModel)
-        //{
-        //    if (string.IsNullOrEmpty(customerModel.LastName))
-        //    {
-        //        return;
-        //    }
-
-        //    if (customers.Count > 0)
-        //    {
-        //        customers.RemoveAll(x => x.LastName != customerModel.LastName);
-        //        return;
-        //    }
-
-        //    var customersDb = _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName);
-        //    customers.AddRange(customersDb);
-        //}
-
-        //private void FilterOrGetCustomersByAddress(List<Customer> customers, CustomerModel customerModel)
-        //{
-        //    if (string.IsNullOrEmpty(customerModel.Address))
-        //    {
-        //        return;
-        //    }
-
-        //    if (customers.Count > 0)
-        //    {
-        //        customers.RemoveAll(x => !x.Address.Contains(customerModel.Address));
-        //        return;
-        //    }
-
-        //    var customersDb = _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address));
-        //    customers.AddRange(customersDb);
-        //}
-
-        //private void FilterOrGetCustomersByTelephone(List<Customer> customers, CustomerModel customerModel)
-        //{
-        //    if (string.IsNullOrEmpty(customerModel.Telephone))
-        //    {
-        //        return;
-        //    }
-
-        //    if (customers.Count > 0)
-        //    {
-        //        customers.RemoveAll(x => x.Telephone != customerModel.Telephone);
-        //        return;
-        //    }
-
-        //    var customersDb = _wpfAppContext.Customers.Where(x => x.Telephone == customerModel.Telephone);
-        //    customers.AddRange(customersDb);
-        //}
     }
 }
