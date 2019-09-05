@@ -49,17 +49,6 @@
             </Setter>
         </Style>
 
-        <Style x:Key="closeButton" BasedOn="{StaticResource basicButton}" TargetType="Button">
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="FontSize" Value="9" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Setter Property="Margin" Value="15,7" />
-            <Setter Property="Background" Value="{x:Null}" />
-        </Style>
-
         <Style x:Key="panelMessageText" TargetType="{x:Type TextBlock}">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="Margin" Value="0,11,0,0" />
@@ -91,13 +80,15 @@
                        Style="{StaticResource panelMessageText}" 
                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Message}" 
                        Foreground="#FFA1C3D2" 
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
 
             <TextBlock x:Name="txtSubMessage"
                        Style="{StaticResource panelSubMessageText}" 
                        Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=SubMessage}" 
                        Foreground="#FFA1C3D2" 
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
         </StackPanel>
         <local:CircularProgressBar x:Name="progressBar"
                              HorizontalAlignment="Center"

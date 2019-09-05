@@ -87,7 +87,7 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName);
+            var customersDb = _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName).ToList();
             customers.AddRange(customersDb);
         }
 
@@ -104,7 +104,7 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName);
+            var customersDb = _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToList();
             customers.AddRange(customersDb);
         }
 
@@ -121,7 +121,7 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address));
+            var customersDb = _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address)).ToList();
             customers.AddRange(customersDb);
         }
 

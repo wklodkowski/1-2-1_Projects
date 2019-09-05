@@ -79,60 +79,78 @@ namespace WpfApp.Desktop.ViewModels.Customer
             Messenger.Default.Register<FindCustomerContentMessage>(this, HandleRegisterSwitchCustomerMessage);
         }
 
-        private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
-        {
-            IsLoadingPanelVisible = true;
-            var customers = Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel));
-
-            await customers.ContinueWith(
-                manifest =>
-                {
-                    if (manifest.Result == null)
-                        throw new InvalidOperationException();
-
-                    IsLoadingPanelVisible = false;
-                });
-
-            foreach (var customer in await customers)
-            {
-                CustomerList.Add(customer);
-            }
-        }
-
-        //private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //{
+        //try
         //{
         //    IsLoadingPanelVisible = true;
-        //    Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
+        //    var customers = Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel));
+
+        //    await customers.ContinueWith(
         //        manifest =>
         //        {
         //            if (manifest.Result == null)
         //                throw new InvalidOperationException();
 
         //            IsLoadingPanelVisible = false;
-
-        //            if (Application.Current.Dispatcher != null)
-        //                Application.Current.Dispatcher.Invoke(() =>
-        //                {
-        //                    foreach (var customer in manifest.Result)
-        //                    {
-        //                        CustomerList.Add(customer);
-        //                    }
-        //                });
         //        });
+
+        //    foreach (var customer in await customers)
+        //    {
+        //        CustomerList.Add(customer);
+        //    }
         //}
+        //catch (Exception e)
+        //{
+        //    Console.WriteLine(e);
+        //    throw;
+        //}           
+        //}
+
+        private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        {
+
+            IsLoadingPanelVisible = true;
+            Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
+                manifest =>
+                {
+                    if (manifest.Result == null)
+                        throw new InvalidOperationException();
+
+                    if (Application.Current.Dispatcher != null)
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            IsLoadingPanelVisible = false;
+                            foreach (var customer in manifest.Result)
+                            {
+                                CustomerList.Add(customer);
+                            }
+                        });
+                });
+        }
 
         private List<CustomerContentModel> GetCustomers(CustomerContentModel customerContentModel)
         {
-            var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
-            var customerModelList = _customerService.GetCustomers(customerModel);
-            var result = new List<CustomerContentModel>();
+            
 
-            foreach (var customer in customerModelList)
+            try
             {
-               result.Add(_customerDesktopMapper.ToCustomerContentModel(customer)); 
-            }
+                var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
+                var customerModelList = _customerService.GetCustomers(customerModel);
+                var result = new List<CustomerContentModel>();
 
-            return result;
+                foreach (var customer in customerModelList)
+                {
+                    result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
+                }
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }
