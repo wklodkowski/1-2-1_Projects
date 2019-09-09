@@ -14,7 +14,7 @@ namespace WpfApp.Infrastructure.DI
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new WpfAppContext(ConnectionString)).AsSelf().InstancePerLifetimeScope();
+            //builder.Register(c => new WpfAppContext(ConnectionString)).AsSelf().InstancePerLifetimeScope();
         }
     }
 }

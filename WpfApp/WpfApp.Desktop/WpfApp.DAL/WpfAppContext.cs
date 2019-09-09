@@ -6,7 +6,7 @@ namespace WpfApp.DAL
 {
     public class WpfAppContext : DbContext
     {
-        public WpfAppContext(string connectionString):base(connectionString)
+        public WpfAppContext() :base()
         {            
         }
 

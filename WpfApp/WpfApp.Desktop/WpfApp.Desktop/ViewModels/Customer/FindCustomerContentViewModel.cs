@@ -79,77 +79,79 @@ namespace WpfApp.Desktop.ViewModels.Customer
             Messenger.Default.Register<FindCustomerContentMessage>(this, HandleRegisterSwitchCustomerMessage);
         }
 
-        //private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
         //{
-        //try
-        //{
-        //    IsLoadingPanelVisible = true;
-        //    var customers = Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel));
 
-        //    await customers.ContinueWith(
+        //    IsLoadingPanelVisible = true;
+        //    Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
         //        manifest =>
         //        {
         //            if (manifest.Result == null)
         //                throw new InvalidOperationException();
 
-        //            IsLoadingPanelVisible = false;
+        //            if (Application.Current.Dispatcher != null)
+        //                Application.Current.Dispatcher.Invoke(() =>
+        //                {
+        //                    IsLoadingPanelVisible = false;
+        //                    foreach (var customer in manifest.Result)
+        //                    {
+        //                        CustomerList.Add(customer);
+        //                    }
+        //                });
         //        });
-
-        //    foreach (var customer in await customers)
-        //    {
-        //        CustomerList.Add(customer);
-        //    }
         //}
-        //catch (Exception e)
-        //{
-        //    Console.WriteLine(e);
-        //    throw;
-        //}           
-        //}
-
-        private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
-        {
-
-            IsLoadingPanelVisible = true;
-            Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
-                manifest =>
-                {
-                    if (manifest.Result == null)
-                        throw new InvalidOperationException();
-
-                    if (Application.Current.Dispatcher != null)
-                        Application.Current.Dispatcher.Invoke(() =>
-                        {
-                            IsLoadingPanelVisible = false;
-                            foreach (var customer in manifest.Result)
-                            {
-                                CustomerList.Add(customer);
-                            }
-                        });
-                });
-        }
 
         private List<CustomerContentModel> GetCustomers(CustomerContentModel customerContentModel)
         {
-            
+            var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
+            var customerModelList = _customerService.GetCustomers(customerModel);
+            var result = new List<CustomerContentModel>();
 
-            try
+            foreach (var customer in customerModelList)
             {
-                var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
-                var customerModelList = _customerService.GetCustomers(customerModel);
-                var result = new List<CustomerContentModel>();
-
-                foreach (var customer in customerModelList)
-                {
-                    result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
-                }
-
-                return result;
+                result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
             }
-            catch (Exception e)
+
+            return result;
+        }
+
+        // Do Task.Run vol 2
+
+        //private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //{
+
+        //    IsLoadingPanelVisible = true;
+
+        //    var customers = await Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel));
+
+
+        //    IsLoadingPanelVisible = false;
+        //    foreach (var customer in customers)
+        //    {
+        //        CustomerList.Add(customer);
+        //    }
+
+        //}
+
+        //Do async metod
+        //https://stackoverflow.com/questions/41957837/context-savechangesasync-is-blocking
+
+        private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        {
+
+            IsLoadingPanelVisible = true;
+            var customerModelList = await _customerService.GetCustomersAsync(_customerDesktopMapper.ToCustomerModel(findCustomerContentMessage.CustomerContentModel));
+            var result = new List<CustomerContentModel>();
+
+            foreach (var customer in customerModelList)
             {
-                Console.WriteLine(e);
-                throw;
+                result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
+            }
+
+            IsLoadingPanelVisible = false;
+            foreach (var customer in result)
+            {
+                CustomerList.Add(customer);
             }
         }
     }

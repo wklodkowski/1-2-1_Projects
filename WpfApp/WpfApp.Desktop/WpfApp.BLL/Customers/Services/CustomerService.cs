@@ -15,20 +15,22 @@ namespace WpfApp.BLL.Customers.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly WpfAppContext _wpfAppContext;
         private readonly ICustomerMapper _customerMapper;
 
-        public CustomerService(WpfAppContext wpfAppContext, ICustomerMapper customerMapper)
+        public CustomerService(ICustomerMapper customerMapper)
         {
-            _wpfAppContext = wpfAppContext;
             _customerMapper = customerMapper;
         }
 
         public void CreateCustomer(CustomerModel customer)
         {
             var customerDb = _customerMapper.ToCustomer(customer);
-            _wpfAppContext.Customers.Add(customerDb);
-            _wpfAppContext.SaveChanges();
+
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                wpfAppContext.Customers.Add(customerDb);
+                wpfAppContext.SaveChanges();
+            }            
         }
 
         public List<CustomerModel> GetCustomers(CustomerModel customerModel)
@@ -65,13 +67,16 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customerDb = _wpfAppContext.Customers.SingleOrDefault(x => x.CustomerId == customerModel.CustomerId);
-            if (customerDb == null)
+            using (var wpfAppContext = new WpfAppContext())
             {
-                return;
-            }
+                var customerDb = wpfAppContext.Customers.SingleOrDefault(x => x.CustomerId == customerModel.CustomerId);
+                if (customerDb == null)
+                {
+                    return;
+                }
 
-            customers.Add(customerDb);
+                customers.Add(customerDb);
+            }           
         }
 
         private void FilterOrGetCustomersByFirstName(List<Customer> customers, CustomerModel customerModel)
@@ -87,8 +92,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName).ToList();
-            customers.AddRange(customersDb);
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                var customersDb = wpfAppContext.Customers.Where(x => x.FirstName == customerModel.FirstName).ToList();
+                customers.AddRange(customersDb);
+            }
         }
 
         private void FilterOrGetCustomersByLastName(List<Customer> customers, CustomerModel customerModel)
@@ -104,8 +112,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToList();
-            customers.AddRange(customersDb);
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                var customersDb = wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToList();
+                customers.AddRange(customersDb);
+            }          
         }
 
         private void FilterOrGetCustomersByAddress(List<Customer> customers, CustomerModel customerModel)
@@ -121,8 +132,11 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address)).ToList();
-            customers.AddRange(customersDb);
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                var customersDb = wpfAppContext.Customers.Where(x => x.Address.Contains(customerModel.Address)).ToList();
+                customers.AddRange(customersDb);
+            }       
         }
 
         private void FilterOrGetCustomersByTelephone(List<Customer> customers, CustomerModel customerModel)
@@ -138,8 +152,27 @@ namespace WpfApp.BLL.Customers.Services
                 return;
             }
 
-            var customersDb = _wpfAppContext.Customers.Where(x => x.Telephone == customerModel.Telephone);
-            customers.AddRange(customersDb);
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                var customersDb = wpfAppContext.Customers.Where(x => x.Telephone == customerModel.Telephone);
+                customers.AddRange(customersDb);
+            }         
+        }
+
+        public async Task<List<CustomerModel>> GetCustomersAsync(CustomerModel customerModel)
+        {
+            Thread.Sleep(5000);
+            List<CustomerModel> result;
+
+            using (var wpfAppContext = new WpfAppContext())
+            {
+                var customersDb = await wpfAppContext.Customers.Where(x => x.LastName == customerModel.LastName).ToListAsync().ConfigureAwait(false);
+                result = customersDb.Select(customer => _customerMapper.ToCustomerModel(customer)).ToList();
+            }
+
+            Thread.Sleep(5000);
+
+            return result;
         }
     }
 }

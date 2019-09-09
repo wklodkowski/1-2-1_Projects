@@ -29,13 +29,13 @@ namespace WpfApp.Desktop.ViewModels
         private static void Register()
         {
             var builder = new ContainerBuilder();
-            var connectionString = GetConnectionString();
+            //var connectionString = GetConnectionString();
 
             builder.RegisterModule(new WpfAppBllModule());
-            builder.RegisterModule(new WpfAppDalModule
-            {
-                ConnectionString = connectionString
-            });
+            //builder.RegisterModule(new WpfAppDalModule
+            //{
+            //    ConnectionString = connectionString
+            //});
 
             RegisterViewModels(builder);
             RegisterMappers(builder);
