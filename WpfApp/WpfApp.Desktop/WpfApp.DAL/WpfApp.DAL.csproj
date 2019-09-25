@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customers\Models\Customer.cs" />
+    <Compile Include="Invoices\Models\Invoice.cs" />
     <Compile Include="Migrations\201905211528361_InitialCreate.cs" />
     <Compile Include="Migrations\201905211528361_InitialCreate.Designer.cs">
       <DependentUpon>201905211528361_InitialCreate.cs</DependentUpon>

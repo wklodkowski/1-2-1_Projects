@@ -94,8 +94,12 @@
       <DependentUpon>LoadingPanel.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Invoice\InvoiceContentModel.cs" />
+    <Compile Include="Models\Invoice\Messages\FindInvoiceContentMessage.cs" />
     <Compile Include="Pages\Customer\Enums\FindCustomerPage.cs" />
     <Compile Include="Pages\Customer\Models\SwitchCustomerViewMessageModel.cs" />
+    <Compile Include="Pages\Invoice\Enums\FindInvoicePage.cs" />
+    <Compile Include="Pages\Invoice\Models\SwitchInvoiceViewMessageModel.cs" />
     <Compile Include="Pages\Main\Enum\ApplicationPage.cs" />
     <Compile Include="Pages\Report\Enums\FindReportPage.cs" />
     <Compile Include="Pages\Report\Models\SwitchReportViewMessageModel.cs" />
@@ -113,6 +117,8 @@
     <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\Customer\FindCustomerViewModel.cs" />
     <Compile Include="ViewModels\Home\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Invoice\FindInvoiceContentViewModel.cs" />
+    <Compile Include="ViewModels\Invoice\FindInvoiceViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportContentViewModel.cs" />
     <Compile Include="ViewModels\Report\FindReportViewModel.cs" />
@@ -128,6 +134,12 @@
     </Compile>
     <Compile Include="Views\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\FindInvoiceContentView.xaml.cs">
+      <DependentUpon>FindInvoiceContentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invoice\FindInvoiceView.xaml.cs">
+      <DependentUpon>FindInvoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Report\FindReportContentView.xaml.cs">
       <DependentUpon>FindReportContentView.xaml</DependentUpon>
@@ -168,6 +180,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Home\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Invoice\FindInvoiceContentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Invoice\FindInvoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

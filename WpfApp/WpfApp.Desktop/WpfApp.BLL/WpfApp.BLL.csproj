@@ -60,7 +60,9 @@
     <Compile Include="Reports\Services\Interfaces\IReportService.cs" />
     <Compile Include="Reports\Services\ReportService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Invoices\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WpfApp.DAL\WpfApp.DAL.csproj">
       <Project>{c519d0c8-fb3f-47b4-946e-6579710d96de}</Project>

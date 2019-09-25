@@ -10,6 +10,7 @@
         CreateReport,
         FindReports,
         UpdateReport,
-        DeleteReport
+        DeleteReport,
+        FindInvoice
     }
 }

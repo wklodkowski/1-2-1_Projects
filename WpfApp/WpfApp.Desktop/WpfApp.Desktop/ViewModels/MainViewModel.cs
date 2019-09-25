@@ -11,6 +11,7 @@ using GalaSoft.MvvmLight.Messaging;
 using WpfApp.Desktop.Pages.Main.Enum;
 using WpfApp.Desktop.Pages.Main.Models;
 using WpfApp.Desktop.Views.Customer;
+using WpfApp.Desktop.Views.Invoice;
 using WpfApp.Desktop.Views.Report;
 
 namespace WpfApp.Desktop.ViewModels
@@ -22,6 +23,7 @@ namespace WpfApp.Desktop.ViewModels
         public ICommand FindReportCommand { get; set; }
         public ICommand CreateCustomerCommand { get; set; }
         public ICommand FindCustomerCommand { get; set; }
+        public ICommand FindInvoiceCommand { get; set; }
 
         public MainViewModel()
         {
@@ -29,6 +31,7 @@ namespace WpfApp.Desktop.ViewModels
             FindReportCommand = new RelayCommand(FindReport);
             CreateCustomerCommand = new RelayCommand(CreateCustomer);
             FindCustomerCommand = new RelayCommand(FindCustomer);
+            FindInvoiceCommand = new RelayCommand(FindInvoice);
         }
 
         public void RegisterSwitchMessage()
@@ -64,7 +67,12 @@ namespace WpfApp.Desktop.ViewModels
             SwitchView(ApplicationPage.FindCustomers);
         }
 
-        public void SwitchView(ApplicationPage page)
+        public void FindInvoice()
+        {
+            SwitchView(ApplicationPage.FindInvoice);
+        }
+
+        private void SwitchView(ApplicationPage page)
         {
             switch (page)
             {
@@ -78,6 +86,9 @@ namespace WpfApp.Desktop.ViewModels
                     break;
                 case ApplicationPage.FindCustomers:
                     ContentControlView = new FindCustomerView();
+                    break;
+                case ApplicationPage.FindInvoice:
+                    ContentControlView = new FindInvoiceView();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(page), page, null);

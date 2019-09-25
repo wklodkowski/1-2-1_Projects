@@ -6,7 +6,7 @@ namespace WpfApp.DAL
 {
     public class WpfAppContext : DbContext
     {
-        public WpfAppContext() :base()
+        public WpfAppContext() :base(@"Data Source=DESKTOP-2ASTG8P\SQLEXPRESS;Initial Catalog=WpfApp;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")
         {            
         }
 

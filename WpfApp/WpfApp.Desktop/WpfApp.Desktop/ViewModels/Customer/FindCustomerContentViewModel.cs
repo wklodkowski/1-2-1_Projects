@@ -5,8 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Threading;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using WpfApp.BLL.Customers.Models;
 using WpfApp.BLL.Customers.Services.Interfaces;
@@ -26,11 +29,15 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private string _panelMainMessage = "Loading...";
         private string _panelSubMessage = "Please wait !";
 
+        public ICommand SelectRowCommand { get; set; }
+        public CustomerContentModel SelectedCustomer { get; set; }
+
         public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
         {
             _customerService = customerService;
             _customerDesktopMapper = customerDesktopMapper;
             _customersList = new ObservableCollection<CustomerContentModel>();
+            SelectRowCommand = new RelayCommand(SelectRow);
             RegisterSwitchCustomerMessage();
         }
 
@@ -74,32 +81,37 @@ namespace WpfApp.Desktop.ViewModels.Customer
             }
         }
 
+        public void SelectRow()
+        {
+            int i;
+            i = 10;
+        }
+
         private void RegisterSwitchCustomerMessage()
         {
             Messenger.Default.Register<FindCustomerContentMessage>(this, HandleRegisterSwitchCustomerMessage);
         }
 
-        //private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
-        //{
+        private void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        {
+            IsLoadingPanelVisible = true;
+            Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
+                manifest =>
+                {
+                    if (manifest.Result == null)
+                        throw new InvalidOperationException();
 
-        //    IsLoadingPanelVisible = true;
-        //    Task.Run(() => GetCustomers(findCustomerContentMessage.CustomerContentModel)).ContinueWith(
-        //        manifest =>
-        //        {
-        //            if (manifest.Result == null)
-        //                throw new InvalidOperationException();
-
-        //            if (Application.Current.Dispatcher != null)
-        //                Application.Current.Dispatcher.Invoke(() =>
-        //                {
-        //                    IsLoadingPanelVisible = false;
-        //                    foreach (var customer in manifest.Result)
-        //                    {
-        //                        CustomerList.Add(customer);
-        //                    }
-        //                });
-        //        });
-        //}
+                    if (Application.Current.Dispatcher != null)
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            IsLoadingPanelVisible = false;
+                            foreach (var customer in manifest.Result)
+                            {
+                                CustomerList.Add(customer);
+                            }
+                        });
+                });
+        }
 
         private List<CustomerContentModel> GetCustomers(CustomerContentModel customerContentModel)
         {
@@ -136,23 +148,23 @@ namespace WpfApp.Desktop.ViewModels.Customer
         //Do async metod
         //https://stackoverflow.com/questions/41957837/context-savechangesasync-is-blocking
 
-        private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
-        {
+        //private async void HandleRegisterSwitchCustomerMessage(FindCustomerContentMessage findCustomerContentMessage)
+        //{
 
-            IsLoadingPanelVisible = true;
-            var customerModelList = await _customerService.GetCustomersAsync(_customerDesktopMapper.ToCustomerModel(findCustomerContentMessage.CustomerContentModel));
-            var result = new List<CustomerContentModel>();
+        //    IsLoadingPanelVisible = true;
+        //    var customerModelList = await _customerService.GetCustomersAsync(_customerDesktopMapper.ToCustomerModel(findCustomerContentMessage.CustomerContentModel));
+        //    var result = new List<CustomerContentModel>();
 
-            foreach (var customer in customerModelList)
-            {
-                result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
-            }
+        //    foreach (var customer in customerModelList)
+        //    {
+        //        result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
+        //    }
 
-            IsLoadingPanelVisible = false;
-            foreach (var customer in result)
-            {
-                CustomerList.Add(customer);
-            }
-        }
+        //    IsLoadingPanelVisible = false;
+        //    foreach (var customer in result)
+        //    {
+        //        CustomerList.Add(customer);
+        //    }
+        //}
     }
 }

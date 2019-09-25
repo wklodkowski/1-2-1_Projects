@@ -40,6 +40,9 @@
                     <MenuItem Header="Update Report"/>
                     <MenuItem Header="Delete Report"/>
                 </MenuItem>
+                <MenuItem Header="_Invoice">
+                    <MenuItem Header="Find Invoice" Command="{Binding FindInvoiceCommand}"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <ContentControl Grid.Row="1" Content="{Binding ContentControlView}"></ContentControl>

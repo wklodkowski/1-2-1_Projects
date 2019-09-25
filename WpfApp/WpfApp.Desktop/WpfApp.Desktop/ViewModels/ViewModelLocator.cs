@@ -7,6 +7,7 @@ using WpfApp.Desktop.Mappers.Customer.Interfaces;
 using WpfApp.Desktop.Mappers.Report;
 using WpfApp.Desktop.Mappers.Report.Interfaces;
 using WpfApp.Desktop.ViewModels.Customer;
+using WpfApp.Desktop.ViewModels.Invoice;
 using WpfApp.Desktop.ViewModels.Report;
 using WpfApp.Infrastructure.DI;
 
@@ -25,6 +26,8 @@ namespace WpfApp.Desktop.ViewModels
         public CreateCustomerViewModel CreateCustomerViewModel => ServiceLocator.Current.GetInstance<CreateCustomerViewModel>();
         public FindCustomerViewModel FindCustomerViewModel => ServiceLocator.Current.GetInstance<FindCustomerViewModel>();
         public FindCustomerContentViewModel FindCustomerContentViewModel => ServiceLocator.Current.GetInstance<FindCustomerContentViewModel>();
+        public FindInvoiceViewModel FindInvoiceViewModel => ServiceLocator.Current.GetInstance<FindInvoiceViewModel>();
+        public FindInvoiceContentViewModel FindInvoiceContentViewModel => ServiceLocator.Current.GetInstance<FindInvoiceContentViewModel>();
 
         private static void Register()
         {
@@ -57,6 +60,10 @@ namespace WpfApp.Desktop.ViewModels
             builder.RegisterType<CreateCustomerViewModel>();
             builder.RegisterType<FindCustomerViewModel>();
             builder.RegisterType<FindCustomerContentViewModel>();
+
+            //Invoice
+            builder.RegisterType<FindInvoiceViewModel>();
+            builder.RegisterType<FindInvoiceContentViewModel>();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)
