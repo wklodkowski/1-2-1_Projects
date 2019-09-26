@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WpfApp.DAL.Invoices.Models;
 using WpfApp.DAL.Reports.Models;
 
 namespace WpfApp.DAL.Customers.Models
@@ -11,6 +12,7 @@ namespace WpfApp.DAL.Customers.Models
         public string Address { get; set; }
         public string Telephone { get; set; }
 
-        public ICollection<Report> Reports { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
+        public virtual  ICollection<Invoice> Invoices { get; set;  }
     }
 }

@@ -54,6 +54,10 @@
     <Compile Include="Migrations\201905211528361_InitialCreate.Designer.cs">
       <DependentUpon>201905211528361_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909261455540_AddedInvoiceTable.cs" />
+    <Compile Include="Migrations\201909261455540_AddedInvoiceTable.Designer.cs">
+      <DependentUpon>201909261455540_AddedInvoiceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\Models\Report.cs" />
@@ -66,6 +70,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905211528361_InitialCreate.resx">
       <DependentUpon>201905211528361_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261455540_AddedInvoiceTable.resx">
+      <DependentUpon>201909261455540_AddedInvoiceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

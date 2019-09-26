@@ -13,6 +13,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using GalaSoft.MvvmLight.Messaging;
 using WpfApp.BLL.Customers.Models;
 using WpfApp.BLL.Customers.Services.Interfaces;
+using WpfApp.BLL.Invoices.Services.Interfaces;
 using WpfApp.Desktop.Mappers.Customer.Interfaces;
 using WpfApp.Desktop.Models.Customer;
 using WpfApp.Desktop.Models.Customer.Messages;
@@ -24,20 +25,24 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private ObservableCollection<CustomerContentModel> _customersList;
         private readonly ICustomerService _customerService;
         private readonly ICustomerDesktopMapper _customerDesktopMapper;
+        private readonly IInvoiceService _invoiceService;
 
         private bool _isLoadingPanelVisible;
         private string _panelMainMessage = "Loading...";
         private string _panelSubMessage = "Please wait !";
 
         public ICommand SelectRowCommand { get; set; }
+        public ICommand GenerateReportCommand { get; set; }
         public CustomerContentModel SelectedCustomer { get; set; }
 
-        public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
+        public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper, IInvoiceService invoiceService)
         {
             _customerService = customerService;
             _customerDesktopMapper = customerDesktopMapper;
+            _invoiceService = invoiceService;
             _customersList = new ObservableCollection<CustomerContentModel>();
             SelectRowCommand = new RelayCommand(SelectRow);
+            GenerateReportCommand = new RelayCommand(GenerateReport);
             RegisterSwitchCustomerMessage();
         }
 
@@ -85,6 +90,11 @@ namespace WpfApp.Desktop.ViewModels.Customer
         {
             int i;
             i = 10;
+        }
+
+        public void GenerateReport()
+        {
+            var invoicesForCustomer = _invoiceService.GetInvoiceCalculationsForCustomer(SelectedCustomer.CustomerId);
         }
 
         private void RegisterSwitchCustomerMessage()

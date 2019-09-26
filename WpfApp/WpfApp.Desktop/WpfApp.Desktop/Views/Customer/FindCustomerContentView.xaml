@@ -11,7 +11,15 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="{Binding FindCustomerContentViewModel, Source={StaticResource Locator}}">
     <Grid>
-        <DataGrid x:Name="FindReportContentDataGrid" SelectedItem="{Binding SelectedCustomer}" ItemsSource="{Binding CustomerList}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid Grid.Column="0" Grid.ColumnSpan="2" x:Name="FindReportContentDataGrid" SelectedItem="{Binding SelectedCustomer}" ItemsSource="{Binding CustomerList}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <command:EventToCommand CommandParameter="{Binding SelectedItem, ElementName=dg}" Command="{Binding Path=SelectRowCommand, Mode=OneWay}"/>
@@ -22,5 +30,6 @@
                                      IsLoading="{Binding IsLoadingPanelVisible}"
                                      Message="{Binding PanelMainMessage}"
                                      SubMessage="{Binding PanelSubMessage}"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Generate Report" Command="{Binding GenerateReportCommand}" Margin="150,10,150,10"/>
     </Grid>
 </UserControl>
