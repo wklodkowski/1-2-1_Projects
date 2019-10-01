@@ -80,6 +80,9 @@ namespace WpfApp.Desktop.ViewModels.Customer
                 case FindCustomerPage.FindCustomerContent:
                     ContentControlFindCustomerContentView = new FindCustomerContentView();
                     break;
+                case FindCustomerPage.FindCustomerContentReport:
+                    ContentControlFindCustomerContentView = new FindCustomerContentReportView();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(findCustomerPage), findCustomerPage, null);
             }

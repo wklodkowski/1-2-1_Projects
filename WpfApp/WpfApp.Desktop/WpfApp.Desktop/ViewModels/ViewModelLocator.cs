@@ -4,6 +4,8 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using WpfApp.Desktop.Mappers.Customer;
 using WpfApp.Desktop.Mappers.Customer.Interfaces;
+using WpfApp.Desktop.Mappers.Invoice;
+using WpfApp.Desktop.Mappers.Invoice.Interfaces;
 using WpfApp.Desktop.Mappers.Report;
 using WpfApp.Desktop.Mappers.Report.Interfaces;
 using WpfApp.Desktop.ViewModels.Customer;
@@ -21,13 +23,21 @@ namespace WpfApp.Desktop.ViewModels
         }
 
         public MainViewModel MainViewModel => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        //Reports
         public FindReportViewModel FindReportViewModel => ServiceLocator.Current.GetInstance<FindReportViewModel>();
         public FindReportContentViewModel FindReportContentViewModel => ServiceLocator.Current.GetInstance<FindReportContentViewModel>();
+
+        //Customers
         public CreateCustomerViewModel CreateCustomerViewModel => ServiceLocator.Current.GetInstance<CreateCustomerViewModel>();
         public FindCustomerViewModel FindCustomerViewModel => ServiceLocator.Current.GetInstance<FindCustomerViewModel>();
         public FindCustomerContentViewModel FindCustomerContentViewModel => ServiceLocator.Current.GetInstance<FindCustomerContentViewModel>();
+        public FindCustomerContentReportViewModel FindCustomerContentReportViewModel => ServiceLocator.Current.GetInstance<FindCustomerContentReportViewModel>();
+
+        //Invoices
         public FindInvoiceViewModel FindInvoiceViewModel => ServiceLocator.Current.GetInstance<FindInvoiceViewModel>();
         public FindInvoiceContentViewModel FindInvoiceContentViewModel => ServiceLocator.Current.GetInstance<FindInvoiceContentViewModel>();
+
 
         private static void Register()
         {
@@ -60,6 +70,7 @@ namespace WpfApp.Desktop.ViewModels
             builder.RegisterType<CreateCustomerViewModel>();
             builder.RegisterType<FindCustomerViewModel>();
             builder.RegisterType<FindCustomerContentViewModel>();
+            builder.RegisterType<FindCustomerContentReportViewModel>();
 
             //Invoice
             builder.RegisterType<FindInvoiceViewModel>();
@@ -70,6 +81,7 @@ namespace WpfApp.Desktop.ViewModels
         {
             builder.RegisterType<ReportDesktopMapper>().As<IReportDesktopMapper>();
             builder.RegisterType<CustomerDesktopMapper>().As<ICustomerDesktopMapper>();
+            builder.RegisterType<InvoiceDesktopMapper>().As<IInvoiceDesktopMapper>();
         }
 
         private static string GetConnectionString()

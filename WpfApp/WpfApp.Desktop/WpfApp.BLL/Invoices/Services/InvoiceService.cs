@@ -8,6 +8,7 @@ using WpfApp.BLL.Invoices.Mappers.Interfaces;
 using WpfApp.BLL.Invoices.Models;
 using WpfApp.BLL.Invoices.Services.Interfaces;
 using WpfApp.DAL;
+using WpfApp.DAL.Invoices.Models;
 
 namespace WpfApp.BLL.Invoices.Services
 {
@@ -26,7 +27,7 @@ namespace WpfApp.BLL.Invoices.Services
             var calculationInstances = GetAllImplementationsForInvoiceCalculations();
             var invoicesCalculationsForCustomer = calculationInstances.Select(instance => new InvoiceCalculationModel
                 {
-                    CalculationType = instance.GetCalculationType().ToString(),
+                    CalculationType = instance.GetCalculationType(),
                     Amount = instance.GetAmount(invoiceModelList)
                 })
                 .ToList();
@@ -36,11 +37,11 @@ namespace WpfApp.BLL.Invoices.Services
 
         private List<InvoiceModel> GetAllInvoicesForCustomer(int customerId)
         {
-            List<InvoiceModel> result = new List<InvoiceModel>();
+            List<InvoiceModel> result;
             using (var wpfAppContext = new WpfAppContext())
             {
-                //var invoicesDb = wpfAppContext.Invoices.Where(i => i.CustomerId == customerId);
-                //result = invoicesDb.Select(x => _invoiceMapper.ToInvoiceModel(x)).ToList();
+                var invoicesDb = wpfAppContext.Invoices.Where(i => i.CustomerId == customerId).ToList();
+                result = invoicesDb.Select(invoice => _invoiceMapper.ToInvoiceModel(invoice)).ToList();
             }
 
             return result;

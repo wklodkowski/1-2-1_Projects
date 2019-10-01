@@ -94,6 +94,10 @@
       <DependentUpon>LoadingPanel.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Mappers\Invoice\Interfaces\IInvoiceDesktopMapper.cs" />
+    <Compile Include="Mappers\Invoice\InvoiceDesktopMapper.cs" />
+    <Compile Include="Models\Customer\Messages\FindCustomerContentReportMessage.cs" />
+    <Compile Include="Models\Invoice\InvoiceCalculationContentModel.cs" />
     <Compile Include="Models\Invoice\InvoiceContentModel.cs" />
     <Compile Include="Models\Invoice\Messages\FindInvoiceContentMessage.cs" />
     <Compile Include="Pages\Customer\Enums\FindCustomerPage.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Models\Report\Messages\FindReportContentMessage.cs" />
     <Compile Include="Models\Report\ReportContentModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\Customer\FindCustomerContentReportViewModel.cs" />
     <Compile Include="ViewModels\Customer\FindCustomerContentViewModel.cs" />
     <Compile Include="ViewModels\Customer\CreateCustomerViewModel.cs" />
     <Compile Include="ViewModels\Customer\FindCustomerViewModel.cs" />
@@ -125,6 +130,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Customer\CreateCustomerView.xaml.cs">
       <DependentUpon>CreateCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\FindCustomerContentReportView.xaml.cs">
+      <DependentUpon>FindCustomerContentReportView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Customer\FindCustomerContentView.xaml.cs">
       <DependentUpon>FindCustomerContentView.xaml</DependentUpon>
@@ -168,6 +176,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Customer\CreateCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Customer\FindCustomerContentReportView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

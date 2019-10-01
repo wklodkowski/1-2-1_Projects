@@ -13,6 +13,6 @@ namespace WpfApp.DAL.Customers.Models
         public string Telephone { get; set; }
 
         public virtual ICollection<Report> Reports { get; set; }
-        public virtual  ICollection<Invoice> Invoices { get; set;  }
+        public virtual ICollection<Invoice> Invoices { get; set;  }
     }
 }

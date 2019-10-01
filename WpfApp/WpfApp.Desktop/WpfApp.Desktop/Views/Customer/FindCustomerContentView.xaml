@@ -19,17 +19,17 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" Grid.ColumnSpan="2" x:Name="FindReportContentDataGrid" SelectedItem="{Binding SelectedCustomer}" ItemsSource="{Binding CustomerList}" >
+        <DataGrid Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="FindReportContentDataGrid" SelectedItem="{Binding SelectedCustomer}" ItemsSource="{Binding CustomerList}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <command:EventToCommand CommandParameter="{Binding SelectedItem, ElementName=dg}" Command="{Binding Path=SelectRowCommand, Mode=OneWay}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </DataGrid>
-        <loadingSpinner:LoadingPanel x:Name="loadingPanel"
+        <Button Grid.Column="1" Grid.Row="1" Content="Generate Report" Command="{Binding GenerateReportCommand}" Margin="100,10,100,10"/>
+        <loadingSpinner:LoadingPanel Grid.ColumnSpan="2" x:Name="loadingPanel"
                                      IsLoading="{Binding IsLoadingPanelVisible}"
                                      Message="{Binding PanelMainMessage}"
                                      SubMessage="{Binding PanelSubMessage}"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Generate Report" Command="{Binding GenerateReportCommand}" Margin="150,10,150,10"/>
     </Grid>
 </UserControl>

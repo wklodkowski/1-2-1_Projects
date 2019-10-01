@@ -13,12 +13,12 @@ namespace WpfApp.BLL.Invoices.Services
     {
         public CalculationEnum GetCalculationType()
         {
-            throw new NotImplementedException();
+            return CalculationEnum.Max;
         }
 
         public decimal GetAmount(List<InvoiceModel> invoices)
         {
-            throw new NotImplementedException();
+            return invoices.Max(i => i.Amount);
         }
     }
 }

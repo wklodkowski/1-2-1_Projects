@@ -13,12 +13,15 @@ namespace WpfApp.BLL.Invoices.Services
     {
         public CalculationEnum GetCalculationType()
         {
-            throw new NotImplementedException();
+            return CalculationEnum.Average;
         }
 
         public decimal GetAmount(List<InvoiceModel> invoices)
         {
-            throw new NotImplementedException();
+            var sumOfNumberOfInvoices = invoices.Count;
+            var sumInvoicesAmount = invoices.Sum(invoice => invoice.Amount);
+
+            return sumInvoicesAmount / sumOfNumberOfInvoices;
         }
     }
 }

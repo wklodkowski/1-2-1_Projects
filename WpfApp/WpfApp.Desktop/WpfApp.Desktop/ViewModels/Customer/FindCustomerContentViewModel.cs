@@ -17,6 +17,8 @@ using WpfApp.BLL.Invoices.Services.Interfaces;
 using WpfApp.Desktop.Mappers.Customer.Interfaces;
 using WpfApp.Desktop.Models.Customer;
 using WpfApp.Desktop.Models.Customer.Messages;
+using WpfApp.Desktop.Pages.Customer.Enums;
+using WpfApp.Desktop.Pages.Customer.Models;
 
 namespace WpfApp.Desktop.ViewModels.Customer
 {
@@ -25,23 +27,21 @@ namespace WpfApp.Desktop.ViewModels.Customer
         private ObservableCollection<CustomerContentModel> _customersList;
         private readonly ICustomerService _customerService;
         private readonly ICustomerDesktopMapper _customerDesktopMapper;
-        private readonly IInvoiceService _invoiceService;
 
         private bool _isLoadingPanelVisible;
         private string _panelMainMessage = "Loading...";
         private string _panelSubMessage = "Please wait !";
 
-        public ICommand SelectRowCommand { get; set; }
+        //public ICommand SelectRowCommand { get; set; }
         public ICommand GenerateReportCommand { get; set; }
         public CustomerContentModel SelectedCustomer { get; set; }
 
-        public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper, IInvoiceService invoiceService)
+        public FindCustomerContentViewModel(ICustomerService customerService, ICustomerDesktopMapper customerDesktopMapper)
         {
             _customerService = customerService;
             _customerDesktopMapper = customerDesktopMapper;
-            _invoiceService = invoiceService;
             _customersList = new ObservableCollection<CustomerContentModel>();
-            SelectRowCommand = new RelayCommand(SelectRow);
+            //SelectRowCommand = new RelayCommand(SelectRow);
             GenerateReportCommand = new RelayCommand(GenerateReport);
             RegisterSwitchCustomerMessage();
         }
@@ -86,15 +86,20 @@ namespace WpfApp.Desktop.ViewModels.Customer
             }
         }
 
-        public void SelectRow()
-        {
-            int i;
-            i = 10;
-        }
+        //public void SelectRow()
+        //{
+        //    int i;
+        //    i = 10;
+        //}
 
         public void GenerateReport()
         {
-            var invoicesForCustomer = _invoiceService.GetInvoiceCalculationsForCustomer(SelectedCustomer.CustomerId);
+            var swithchFindCustomerView = new SwitchCustomerViewMessageModel
+            {
+                CustomerPage = FindCustomerPage.FindCustomerContentReport
+            };
+            Messenger.Default.Send(swithchFindCustomerView);
+            Messenger.Default.Send(new FindCustomerContentReportMessage{ClientId = SelectedCustomer.CustomerId});
         }
 
         private void RegisterSwitchCustomerMessage()
@@ -127,14 +132,7 @@ namespace WpfApp.Desktop.ViewModels.Customer
         {
             var customerModel = _customerDesktopMapper.ToCustomerModel(customerContentModel);
             var customerModelList = _customerService.GetCustomers(customerModel);
-            var result = new List<CustomerContentModel>();
-
-            foreach (var customer in customerModelList)
-            {
-                result.Add(_customerDesktopMapper.ToCustomerContentModel(customer));
-            }
-
-            return result;
+            return customerModelList.Select(customer => _customerDesktopMapper.ToCustomerContentModel(customer)).ToList();
         }
 
         // Do Task.Run vol 2

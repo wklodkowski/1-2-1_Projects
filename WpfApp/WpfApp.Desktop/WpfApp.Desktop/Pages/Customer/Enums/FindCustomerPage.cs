@@ -3,6 +3,7 @@
     public enum FindCustomerPage
     {
         Blank,
-        FindCustomerContent
+        FindCustomerContent,
+        FindCustomerContentReport
     }
 }
