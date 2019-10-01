@@ -10,10 +10,25 @@ namespace SqlUpskill
     {
         static void Main(string[] args)
         {
-
+            //GetFirstQueryResult();
             GetSecondQueryResult();
 
             Console.ReadKey();
+        }
+
+        static void GetFirstQueryResult()
+        {
+            var sqlQueryService = new SqlQueryService();
+            var firstResult = sqlQueryService.GetFirstQueryResult();
+
+            PrintLine();
+            PrintRow("Name");
+            PrintLine();
+
+            foreach (var result in firstResult)
+            {
+                PrintRow(result);
+            }
         }
 
         static void GetSecondQueryResult()
