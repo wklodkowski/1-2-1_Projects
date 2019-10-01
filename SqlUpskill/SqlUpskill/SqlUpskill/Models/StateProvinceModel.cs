@@ -10,5 +10,6 @@ namespace SqlUpskill.Models
     {
         public int StateProvinceId { get; set; }
         public string StateProvinceName { get; set; }
+        public int StateAddressProvince { get; set; }
     }
 }
